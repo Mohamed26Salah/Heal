@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "HealLogoEnhanced@1x.png",
+      "filename" : "Ellipse 4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "HealLogoEnhanced@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "HealLogoEnhanced@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

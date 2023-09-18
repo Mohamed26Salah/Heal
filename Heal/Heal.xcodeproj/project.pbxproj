@@ -14,7 +14,14 @@
 		AB1059C72AB8BF270086FF97 /* HealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059C62AB8BF270086FF97 /* HealTests.swift */; };
 		AB1059D12AB8BF270086FF97 /* HealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D02AB8BF270086FF97 /* HealUITests.swift */; };
 		AB1059D32AB8BF270086FF97 /* HealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */; };
-		AB8948FD2AB8D00900161B88 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8948FC2AB8D00900161B88 /* SplashScreen.swift */; };
+		AB8948FF2AB8D41400161B88 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */; };
+		AB8949012AB8D5F700161B88 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8949002AB8D5F700161B88 /* LoginView.swift */; };
+		ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAEB81B2AB8F72700696578 /* SecureTextField.swift */; };
+		ABBFD0442AB8EBB9002000B8 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABBFD0432AB8EBB9002000B8 /* Poppins-Bold.ttf */; };
+		ABBFD0462AB8EC43002000B8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABBFD0452AB8EC43002000B8 /* Lato-Bold.ttf */; };
+		ABBFD0482AB8EC4A002000B8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABBFD0472AB8EC4A002000B8 /* Lato-Regular.ttf */; };
+		ABBFD04A2AB8F1C0002000B8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBFD0492AB8F1C0002000B8 /* CustomTextField.swift */; };
+		ABBFD04D2AB8F212002000B8 /* Extenstion + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBFD04C2AB8F212002000B8 /* Extenstion + View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +53,15 @@
 		AB1059D02AB8BF270086FF97 /* HealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITests.swift; sourceTree = "<group>"; };
 		AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB1059DF2AB8CBBD0086FF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AB8948FC2AB8D00900161B88 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		AB8949002AB8D5F700161B88 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		ABAEB81B2AB8F72700696578 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		ABBFD0422AB8E8B2002000B8 /* OpenSans-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		ABBFD0432AB8EBB9002000B8 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		ABBFD0452AB8EC43002000B8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		ABBFD0472AB8EC4A002000B8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		ABBFD0492AB8F1C0002000B8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		ABBFD04C2AB8F212002000B8 /* Extenstion + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenstion + View.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +112,13 @@
 		AB1059B42AB8BF260086FF97 /* Heal */ = {
 			isa = PBXGroup;
 			children = (
+				ABBFD04B2AB8F1FC002000B8 /* Extenstions */,
 				AB8948FB2AB8CFE600161B88 /* Model */,
 				AB8948FA2AB8CFE000161B88 /* ViewModel */,
 				AB8948F92AB8CFDB00161B88 /* View */,
 				AB1059DF2AB8CBBD0086FF97 /* Info.plist */,
 				AB1059B92AB8BF270086FF97 /* Assets.xcassets */,
+				ABBFD0412AB8E598002000B8 /* Fonts */,
 				AB1059BB2AB8BF270086FF97 /* Preview Content */,
 			);
 			path = Heal;
@@ -135,9 +152,11 @@
 		AB8948F92AB8CFDB00161B88 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AB8949022AB8D6C400161B88 /* Componants */,
 				AB1059B52AB8BF260086FF97 /* HealApp.swift */,
 				AB1059B72AB8BF260086FF97 /* ContentView.swift */,
-				AB8948FC2AB8D00900161B88 /* SplashScreen.swift */,
+				AB8949002AB8D5F700161B88 /* LoginView.swift */,
+				AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -154,6 +173,34 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AB8949022AB8D6C400161B88 /* Componants */ = {
+			isa = PBXGroup;
+			children = (
+				ABBFD0492AB8F1C0002000B8 /* CustomTextField.swift */,
+				ABAEB81B2AB8F72700696578 /* SecureTextField.swift */,
+			);
+			path = Componants;
+			sourceTree = "<group>";
+		};
+		ABBFD0412AB8E598002000B8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				ABBFD0472AB8EC4A002000B8 /* Lato-Regular.ttf */,
+				ABBFD0452AB8EC43002000B8 /* Lato-Bold.ttf */,
+				ABBFD0432AB8EBB9002000B8 /* Poppins-Bold.ttf */,
+				ABBFD0422AB8E8B2002000B8 /* OpenSans-VariableFont_wdth,wght.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		ABBFD04B2AB8F1FC002000B8 /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				ABBFD04C2AB8F212002000B8 /* Extenstion + View.swift */,
+			);
+			path = Extenstions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,8 +307,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8948FF2AB8D41400161B88 /* Launch Screen.storyboard in Resources */,
+				ABBFD0482AB8EC4A002000B8 /* Lato-Regular.ttf in Resources */,
+				ABBFD0462AB8EC43002000B8 /* Lato-Bold.ttf in Resources */,
 				AB1059BD2AB8BF270086FF97 /* Preview Assets.xcassets in Resources */,
 				AB1059BA2AB8BF270086FF97 /* Assets.xcassets in Resources */,
+				ABBFD0442AB8EBB9002000B8 /* Poppins-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,9 +337,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8948FD2AB8D00900161B88 /* SplashScreen.swift in Sources */,
+				ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */,
+				ABBFD04A2AB8F1C0002000B8 /* CustomTextField.swift in Sources */,
+				AB8949012AB8D5F700161B88 /* LoginView.swift in Sources */,
 				AB1059B82AB8BF260086FF97 /* ContentView.swift in Sources */,
 				AB1059B62AB8BF260086FF97 /* HealApp.swift in Sources */,
+				ABBFD04D2AB8F212002000B8 /* Extenstion + View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +507,7 @@
 				INFOPLIST_FILE = Heal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -482,6 +537,7 @@
 				INFOPLIST_FILE = Heal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

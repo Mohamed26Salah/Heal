@@ -12,7 +12,7 @@ struct HealApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            SplashScreen()
+            LoginView()
         }
     }
 }
