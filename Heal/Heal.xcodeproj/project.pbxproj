@@ -17,6 +17,7 @@
 		AB8948FF2AB8D41400161B88 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */; };
 		AB8949012AB8D5F700161B88 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8949002AB8D5F700161B88 /* LoginView.swift */; };
 		ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAEB81B2AB8F72700696578 /* SecureTextField.swift */; };
+		ABAEB81E2AB90A0400696578 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAEB81D2AB90A0400696578 /* RegisterView.swift */; };
 		ABBFD0442AB8EBB9002000B8 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABBFD0432AB8EBB9002000B8 /* Poppins-Bold.ttf */; };
 		ABBFD0462AB8EC43002000B8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABBFD0452AB8EC43002000B8 /* Lato-Bold.ttf */; };
 		ABBFD0482AB8EC4A002000B8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABBFD0472AB8EC4A002000B8 /* Lato-Regular.ttf */; };
@@ -56,6 +57,7 @@
 		AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AB8949002AB8D5F700161B88 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		ABAEB81B2AB8F72700696578 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		ABAEB81D2AB90A0400696578 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		ABBFD0422AB8E8B2002000B8 /* OpenSans-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
 		ABBFD0432AB8EBB9002000B8 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		ABBFD0452AB8EC43002000B8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				AB1059B52AB8BF260086FF97 /* HealApp.swift */,
 				AB1059B72AB8BF260086FF97 /* ContentView.swift */,
 				AB8949002AB8D5F700161B88 /* LoginView.swift */,
+				ABAEB81D2AB90A0400696578 /* RegisterView.swift */,
 				AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */,
 			);
 			path = View;
@@ -340,6 +343,7 @@
 				ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */,
 				ABBFD04A2AB8F1C0002000B8 /* CustomTextField.swift in Sources */,
 				AB8949012AB8D5F700161B88 /* LoginView.swift in Sources */,
+				ABAEB81E2AB90A0400696578 /* RegisterView.swift in Sources */,
 				AB1059B82AB8BF260086FF97 /* ContentView.swift in Sources */,
 				AB1059B62AB8BF260086FF97 /* HealApp.swift in Sources */,
 				ABBFD04D2AB8F212002000B8 /* Extenstion + View.swift in Sources */,
