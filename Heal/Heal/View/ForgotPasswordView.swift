@@ -1,5 +1,5 @@
 //
-//  RegisterView.swift
+//  ForgotPasswordView.swift
 //  Heal
 //
 //  Created by Mohamed Salah on 19/09/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegisterView: View {
+struct ForgotPasswordView: View {
     @State var tempLoginState: String = ""
     var body: some View {
         ScrollView {
@@ -33,7 +33,7 @@ struct RegisterView: View {
                 }
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: nil, height: 365)
+                    .frame(width: nil, height: 250)
                     .background(.ultraThinMaterial)
                     .blur(radius: 5)
                     .cornerRadius(20)
@@ -44,25 +44,12 @@ struct RegisterView: View {
                     )
                     .padding(.horizontal, 27)
                     .padding(.top, 180)
-                VStack (alignment: .leading, spacing: 38){
-                    Text("Sign In")
+                VStack (alignment: .leading, spacing: 45){
+                    Text("Reset Password")
                         .font(.custom("Lato-Bold", size: 30))
                         .foregroundColor(.primary)
-                    CustomTextField(customKeyboardChoice: .email, hint: "Email", text: $tempLoginState)
+                    CustomTextField(customKeyboardChoice: .email, hint: "put your email", text: $tempLoginState)
                         .padding(.top, -10)
-                    SecureTextFieldCustom(hint: "Password", text: $tempLoginState)
-                    HStack(spacing: 0) {
-                        Spacer()
-                        Button(action: {
-                            // Add your action here
-                        }) {
-                            Text("Forgot Password?")
-                                .font(Font.custom("Lato", size: 12))
-                                .foregroundColor(Color(red: 0.3, green: 0.71, blue: 0.74))
-                        }
-
-                    }
-                    .padding(.top, -30)
                     
                     HStack {
                         Button(action: {
@@ -70,38 +57,24 @@ struct RegisterView: View {
                         }) {
                             HStack {
                                 Spacer()
-                                Text("Sign In")
+                                Text("Recover Password ?")
                                     .font(.custom("Lato-Regular", size: 25).weight(.medium))
                                     .foregroundColor(.white)
                                     .frame(width: 280, height: 37)
                                     .background(Color(red: 0.3, green: 0.71, blue: 0.74))
                                     .cornerRadius(6)
+                                
                                 Spacer()
                             }
                             
                         }
                         
                     }
-                    .padding(.top, -16)
-                    HStack(spacing: 0) {
-                        Spacer()
-                        Text("Didn't Join Yet? ")
-                            .font(Font.custom("Lato", size: 12))
-                            .foregroundColor(Color(red: 0.46, green: 0.46, blue: 0.46))
-                        Button(action: {
-                            // Add your action here
-                        }) {
-                            Text("Sign Up")
-                                .font(Font.custom("Lato", size: 12))
-                                .foregroundColor(Color(red: 0.3, green: 0.71, blue: 0.74))
-                        }
-                        Spacer()
-                    }.padding(.top, -30)
                     
                 }
                 .frame(width: nil)
                 .padding(.horizontal, 55)
-                .padding(.top,210)
+                .padding(.top,170)
                 
                 
             }
@@ -112,9 +85,8 @@ struct RegisterView: View {
     }
     
 }
-struct RegisterView_Previews: PreviewProvider {
+struct ForgotPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        ForgotPasswordView()
     }
 }
-
