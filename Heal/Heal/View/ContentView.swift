@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-        .onAppear{
-            for family in UIFont.familyNames.sorted() {
-                let names = UIFont.fontNames(forFamilyName: family)
-                print("Family: \(family) Font names: \(names)")
-            }
-        }
+        Text("3ash you are signed In")
+        Button(action: {
+                authViewModel.signOut()
+        }, label: {
+            Text("SignOut")
+        })
+//        Group {
+//            if authViewModel.userSession != nil {
+//                Text("3ash you are signed In")
+//            } else {
+//                LoginView()
+//            }
+//        }
     }
 }
 

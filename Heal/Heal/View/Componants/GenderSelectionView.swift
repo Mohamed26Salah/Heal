@@ -32,12 +32,6 @@ struct GenderSelectionView: View {
     }
 }
 
-
-enum Gender: String {
-    case male = "RegisterBoyE"
-    case female = "RegisterGirlE"
-}
-//
 //#Preview {
 //    @State var test = false
 //    GenderSelectionView(isMaleSelected: .constant(true), gender: .male)
