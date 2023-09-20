@@ -17,15 +17,15 @@ struct LoginView: View {
                     HStack(alignment: .top) {
                         VStack {
                             Image("Ellipse 7")
-                                .padding(.top, 490)
+                                .padding(.top, 406)
                         }
                         VStack {
                             Image("Ellipse 5")
-                                .padding(.top, 36)
+                                .padding(.top, 508)
                         }
                         VStack {
                             Image("Ellipse 4")
-                                .padding(.top, 36)
+                                .padding(.top, 40)
                         }
                     }
                     Spacer()
@@ -33,7 +33,7 @@ struct LoginView: View {
                 }
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: nil, height: 450)
+                    .frame(width: nil, height: 365)
                     .background(.ultraThinMaterial)
                     .blur(radius: 5)
                     .cornerRadius(20)
@@ -43,34 +43,26 @@ struct LoginView: View {
                             .stroke(.white.opacity(0.3), lineWidth: 1)
                     )
                     .padding(.horizontal, 27)
-                    .padding(.top, 210)
+                    .padding(.top, 180)
                 VStack (alignment: .leading, spacing: 38){
-                    Text("Sign Up")
+                    Text("Sign In")
                         .font(.custom("Lato-Bold", size: 30))
                         .foregroundColor(.primary)
-                    CustomTextField(customKeyboardChoice: .name, hint: "Full Name", text: $tempLoginState)
                     CustomTextField(customKeyboardChoice: .email, hint: "Email", text: $tempLoginState)
                         .padding(.top, -10)
                     SecureTextFieldCustom(hint: "Password", text: $tempLoginState)
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 0) {
-                            Text("By Signing up, You’re agree to our ")
-                                .font(Font.custom("Lato", size: 12))
-                                .foregroundColor(Color(red: 0.46, green: 0.46, blue: 0.46))
-                            Link("Terms & Conditions", destination: URL(string: "https://your-terms-and-conditions-url.com")!)
-                                .font(Font.custom("Lato", size: 12))
-                                .foregroundColor(Color(red: 0.3, green: 0.71, blue: 0.74))
-                        }
-                        HStack(spacing: 0) {
-                            Text(" and ")
-                                .font(Font.custom("Lato", size: 12))
-                                .foregroundColor(Color(red: 0.46, green: 0.46, blue: 0.46))
-                            Link("Privacy Policy", destination: URL(string: "https://your-privacy-policy-url.com")!)
+                    HStack(spacing: 0) {
+                        Spacer()
+                        Button(action: {
+                            // Add your action here
+                        }) {
+                            Text("Forgot Password?")
                                 .font(Font.custom("Lato", size: 12))
                                 .foregroundColor(Color(red: 0.3, green: 0.71, blue: 0.74))
                         }
+
                     }
-                    .padding(.top, -18)
+                    .padding(.top, -30)
                     
                     HStack {
                         Button(action: {
@@ -78,7 +70,7 @@ struct LoginView: View {
                         }) {
                             HStack {
                                 Spacer()
-                                Text("Sign Up")
+                                Text("Sign In")
                                     .font(.custom("Lato-Regular", size: 25).weight(.medium))
                                     .foregroundColor(.white)
                                     .frame(width: 280, height: 37)
@@ -93,13 +85,13 @@ struct LoginView: View {
                     .padding(.top, -16)
                     HStack(spacing: 0) {
                         Spacer()
-                        Text("Joined us before? ")
+                        Text("Didn't Join Yet? ")
                             .font(Font.custom("Lato", size: 12))
                             .foregroundColor(Color(red: 0.46, green: 0.46, blue: 0.46))
                         Button(action: {
                             // Add your action here
                         }) {
-                            Text("Sign In")
+                            Text("Sign Up")
                                 .font(Font.custom("Lato", size: 12))
                                 .foregroundColor(Color(red: 0.3, green: 0.71, blue: 0.74))
                         }

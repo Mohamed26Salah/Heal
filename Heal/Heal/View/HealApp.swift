@@ -12,7 +12,8 @@ struct HealApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            LoginView()
+//            LoginView()
+            RegisterView()
         }
     }
 }

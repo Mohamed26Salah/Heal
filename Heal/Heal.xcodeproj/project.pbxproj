@@ -14,6 +14,8 @@
 		AB1059C72AB8BF270086FF97 /* HealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059C62AB8BF270086FF97 /* HealTests.swift */; };
 		AB1059D12AB8BF270086FF97 /* HealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D02AB8BF270086FF97 /* HealUITests.swift */; };
 		AB1059D32AB8BF270086FF97 /* HealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */; };
+		AB7950FB2ABB209B004E6E71 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7950FA2ABB209B004E6E71 /* Test.swift */; };
+		AB7950FF2ABB2265004E6E71 /* GenderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7950FE2ABB2265004E6E71 /* GenderSelectionView.swift */; };
 		AB8948FF2AB8D41400161B88 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */; };
 		AB8949012AB8D5F700161B88 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8949002AB8D5F700161B88 /* LoginView.swift */; };
 		ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAEB81B2AB8F72700696578 /* SecureTextField.swift */; };
@@ -55,6 +57,8 @@
 		AB1059D02AB8BF270086FF97 /* HealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITests.swift; sourceTree = "<group>"; };
 		AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB1059DF2AB8CBBD0086FF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AB7950FA2ABB209B004E6E71 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		AB7950FE2ABB2265004E6E71 /* GenderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionView.swift; sourceTree = "<group>"; };
 		AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AB8949002AB8D5F700161B88 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		ABAEB81B2AB8F72700696578 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				AB1059B92AB8BF270086FF97 /* Assets.xcassets */,
 				ABBFD0412AB8E598002000B8 /* Fonts */,
 				AB1059BB2AB8BF270086FF97 /* Preview Content */,
+				AB7950FA2ABB209B004E6E71 /* Test.swift */,
 			);
 			path = Heal;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 			children = (
 				ABBFD0492AB8F1C0002000B8 /* CustomTextField.swift */,
 				ABAEB81B2AB8F72700696578 /* SecureTextField.swift */,
+				AB7950FE2ABB2265004E6E71 /* GenderSelectionView.swift */,
 			);
 			path = Componants;
 			sourceTree = "<group>";
@@ -345,9 +351,11 @@
 			files = (
 				ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */,
 				ABBFD04A2AB8F1C0002000B8 /* CustomTextField.swift in Sources */,
+				AB7950FB2ABB209B004E6E71 /* Test.swift in Sources */,
 				ABAEB8202AB90BE600696578 /* ForgotPasswordView.swift in Sources */,
 				AB8949012AB8D5F700161B88 /* LoginView.swift in Sources */,
 				ABAEB81E2AB90A0400696578 /* RegisterView.swift in Sources */,
+				AB7950FF2ABB2265004E6E71 /* GenderSelectionView.swift in Sources */,
 				AB1059B82AB8BF260086FF97 /* ContentView.swift in Sources */,
 				AB1059B62AB8BF260086FF97 /* HealApp.swift in Sources */,
 				ABBFD04D2AB8F212002000B8 /* Extenstion + View.swift in Sources */,
