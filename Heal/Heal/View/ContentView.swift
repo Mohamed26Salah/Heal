@@ -17,31 +17,31 @@ struct ContentView: View {
             ZStack(alignment: .topLeading) {
                 NavigationStack {
                     VStack{
-                        Text("3ash you are signed In")
-                        Button(action: {
-                            authViewModel.signOut()
-                        }, label: {
-                            Text("SignOut")
-                        })
+                        TabView(selection: $selectedTap) {
+                            Text("Dashoard")
+                                .tag(Tab.DashBoard)
+                            Text("Profile")
+                                .tag(Tab.Profile)
+                            Text("Rewards")
+                                .tag(Tab.Rewards)
+                            VStack{
+                                Text("LogOut")
+                                Button(action: {
+                                    authViewModel.signOut()
+                                }, label: {
+                                    Text("SignOut")
+                                })
+                            }
+                                .tag(Tab.logout)
+                        }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+
                     }
                     .navigationTitle("Welcome")
-//                    .toolbar {
-//                        ToolbarItemGroup(placement: .topBarLeading) {
-//                            Button(action: {
-//                                withAnimation {
-//                                    showSideMenu.toggle()
-//                                }
-//                            }, label: {
-//                                Image(systemName: "slider.horizontal.3")
-//                                    .tint(.primary)
-//                            })
-//                            
-//                        }
-//                    }
                     .navigationBarHidden(true)
                 }
                 SideMenu(selectedTab: $selectedTap)
-                    .clipShape(.rect(cornerRadius: 20))
+                    .clipShape(.rect(cornerRadius: 15))
                     .padding(.trailing, geomtry.size.width - 200)
             }
         }
