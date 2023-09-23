@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		AB1059B62AB8BF260086FF97 /* HealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059B52AB8BF260086FF97 /* HealApp.swift */; };
-		AB1059B82AB8BF260086FF97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059B72AB8BF260086FF97 /* ContentView.swift */; };
+		AB1059B82AB8BF260086FF97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059B72AB8BF260086FF97 /* MainView.swift */; };
 		AB1059BA2AB8BF270086FF97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB1059B92AB8BF270086FF97 /* Assets.xcassets */; };
 		AB1059BD2AB8BF270086FF97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB1059BC2AB8BF270086FF97 /* Preview Assets.xcassets */; };
 		AB1059C72AB8BF270086FF97 /* HealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059C62AB8BF270086FF97 /* HealTests.swift */; };
 		AB1059D12AB8BF270086FF97 /* HealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D02AB8BF270086FF97 /* HealUITests.swift */; };
 		AB1059D32AB8BF270086FF97 /* HealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */; };
 		AB4E1E962ABF6AE200380AFD /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E1E952ABF6AE200380AFD /* SideMenu.swift */; };
+		AB4E1E982ABF89A600380AFD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E1E972ABF89A600380AFD /* ProfileView.swift */; };
+		AB4E1E9A2ABF997D00380AFD /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E1E992ABF997D00380AFD /* GridItemView.swift */; };
 		AB7950FB2ABB209B004E6E71 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7950FA2ABB209B004E6E71 /* Test.swift */; };
 		AB7950FF2ABB2265004E6E71 /* GenderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7950FE2ABB2265004E6E71 /* GenderSelectionView.swift */; };
 		AB7951012ABB28C7004E6E71 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7951002ABB28C7004E6E71 /* User.swift */; };
@@ -56,7 +58,7 @@
 /* Begin PBXFileReference section */
 		AB1059B22AB8BF260086FF97 /* Heal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1059B52AB8BF260086FF97 /* HealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealApp.swift; sourceTree = "<group>"; };
-		AB1059B72AB8BF260086FF97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AB1059B72AB8BF260086FF97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AB1059B92AB8BF270086FF97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB1059BC2AB8BF270086FF97 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AB1059C22AB8BF270086FF97 /* HealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,8 @@
 		AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB1059DF2AB8CBBD0086FF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AB4E1E952ABF6AE200380AFD /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		AB4E1E972ABF89A600380AFD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AB4E1E992ABF997D00380AFD /* GridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
 		AB7950FA2ABB209B004E6E71 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		AB7950FE2ABB2265004E6E71 /* GenderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionView.swift; sourceTree = "<group>"; };
 		AB7951002ABB28C7004E6E71 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -180,7 +184,8 @@
 			children = (
 				AB8949022AB8D6C400161B88 /* Componants */,
 				AB1059B52AB8BF260086FF97 /* HealApp.swift */,
-				AB1059B72AB8BF260086FF97 /* ContentView.swift */,
+				AB1059B72AB8BF260086FF97 /* MainView.swift */,
+				AB4E1E972ABF89A600380AFD /* ProfileView.swift */,
 				AB8949002AB8D5F700161B88 /* LoginView.swift */,
 				ABAEB81D2AB90A0400696578 /* RegisterView.swift */,
 				ABAEB81F2AB90BE600696578 /* ForgotPasswordView.swift */,
@@ -212,6 +217,7 @@
 				ABAEB81B2AB8F72700696578 /* SecureTextField.swift */,
 				AB7950FE2ABB2265004E6E71 /* GenderSelectionView.swift */,
 				AB4E1E952ABF6AE200380AFD /* SideMenu.swift */,
+				AB4E1E992ABF997D00380AFD /* GridItemView.swift */,
 			);
 			path = Componants;
 			sourceTree = "<group>";
@@ -383,14 +389,16 @@
 				ABBFD04A2AB8F1C0002000B8 /* CustomTextField.swift in Sources */,
 				AB4E1E962ABF6AE200380AFD /* SideMenu.swift in Sources */,
 				AB7950FB2ABB209B004E6E71 /* Test.swift in Sources */,
+				AB4E1E9A2ABF997D00380AFD /* GridItemView.swift in Sources */,
 				ABAEB8202AB90BE600696578 /* ForgotPasswordView.swift in Sources */,
 				AB8949012AB8D5F700161B88 /* LoginView.swift in Sources */,
 				ABAEB81E2AB90A0400696578 /* RegisterView.swift in Sources */,
 				AB7950FF2ABB2265004E6E71 /* GenderSelectionView.swift in Sources */,
-				AB1059B82AB8BF260086FF97 /* ContentView.swift in Sources */,
+				AB1059B82AB8BF260086FF97 /* MainView.swift in Sources */,
 				AB7951062ABB3152004E6E71 /* AuthViewModel.swift in Sources */,
 				AB1059B62AB8BF260086FF97 /* HealApp.swift in Sources */,
 				ABBFD04D2AB8F212002000B8 /* Extenstion + View.swift in Sources */,
+				AB4E1E982ABF89A600380AFD /* ProfileView.swift in Sources */,
 				AB7951012ABB28C7004E6E71 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

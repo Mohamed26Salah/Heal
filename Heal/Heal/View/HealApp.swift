@@ -17,7 +17,7 @@ struct HealApp: App {
     var body: some Scene {
         WindowGroup {
             if authViewModel.userSession != nil {
-                ContentView()
+                MainView()
                     .environmentObject(authViewModel)
                     .transition(.opacity)
             } else {
