@@ -9,20 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var selectedTab = 0
+    
     var body: some View {
-        Text("3ash you are signed In")
         Button(action: {
                 authViewModel.signOut()
         }, label: {
             Text("SignOut")
         })
-//        Group {
-//            if authViewModel.userSession != nil {
-//                Text("3ash you are signed In")
-//            } else {
+//        NavigationStack {
+//            TabView(selection: $selectedTab) {
 //                LoginView()
+//                    .badge(2)
+//                    .tabItem {
+//                        Label("Received", systemImage: "tray.and.arrow.down.fill")
+//                    }
+//                LoginView()
+//                    .tabItem {
+//                        Label("Sent", systemImage: "tray.and.arrow.up.fill")
+//                    }
+//                LoginView()
+//                    .badge("!")
+//                    .tabItem {
+//                        Label("Account", systemImage: "person.crop.circle.fill")
+//                    }
 //            }
 //        }
+                
     }
 }
 
