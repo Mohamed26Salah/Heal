@@ -21,7 +21,7 @@ struct HealApp: App {
                     .environmentObject(authViewModel)
                     .transition(.opacity)
             } else {
-                LoginView()
+                LoginRegisterView()
                     .environmentObject(authViewModel)
                     .transition(.opacity)
             }

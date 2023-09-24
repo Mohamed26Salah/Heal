@@ -26,13 +26,13 @@ struct GridItemView: View {
                                 Font.custom("Lato", size: 25)
                                     .weight(.bold)
                             )
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                         Text("Total calories burned")
                             .font(
                                 Font.custom("Lato", size: 10)
                                     .weight(.light)
                             )
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .opacity(0.6)
                         Spacer()
                     }
