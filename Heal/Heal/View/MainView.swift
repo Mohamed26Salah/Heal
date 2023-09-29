@@ -20,7 +20,8 @@ struct MainView: View {
                 NavigationStack {
                     VStack{
                         TabView(selection: $selectedTap) {
-                            Text("Dashoard")
+                            Dashboard()
+                                .padding(.top, 70)
                                 .tag(Tab.DashBoard)
                             ProfileView()
                                 .tag(Tab.Profile)
