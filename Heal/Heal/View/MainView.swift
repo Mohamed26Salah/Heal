@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @Environment(\.colorScheme) var colorScheme
     @State var selectedTap: Tab = .DashBoard
-//    @State var showSideMenu = false
+    @State private var showSideMenu = false
     @State private var buttonFrame: CGRect?
+    @State private var isNotificationViewVisible = false
     var body: some View {
         GeometryReader { geomtry in
             ZStack(alignment: .topLeading) {
@@ -22,7 +24,7 @@ struct MainView: View {
                                 .tag(Tab.DashBoard)
                             ProfileView()
                                 .tag(Tab.Profile)
-                            Text("Rewards")
+                            RewardsView()
                                 .tag(Tab.Rewards)
                             VStack{
                                 Text("LogOut")
@@ -40,13 +42,21 @@ struct MainView: View {
                     .navigationTitle("Welcome")
                     .navigationBarHidden(true)
                 }
-                SideMenu(selectedTab: $selectedTap)
-                    .clipShape(.rect(cornerRadius: 15))
-                    .padding(.trailing, geomtry.size.width - 200)
+               
+                if isNotificationViewVisible {
+                    NotificationView()
+                        .background(colorScheme == .light ? Color.white : Color.black)
+                        .padding(.top, 70)
+                }
+                SideMenu(selectedTab: $selectedTap, showSideMenu: $showSideMenu, geomtry: geomtry)
                 HStack {
                     Spacer()
                     Button(action: {
-                        print("Notification Button Tapped")
+                        withAnimation {
+                            showSideMenu = false
+                            isNotificationViewVisible.toggle()
+
+                        }
                     }, label: {
                         Image(systemName: "bell.fill")
                             .tint(.primary)
@@ -59,6 +69,13 @@ struct MainView: View {
                 }
             }
         }
+        .onChange(of: selectedTap, perform: { value in
+            withAnimation {
+                showSideMenu = false
+                isNotificationViewVisible = false
+
+            }
+        })
     }
 }
 
