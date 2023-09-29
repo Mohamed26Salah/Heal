@@ -38,6 +38,7 @@
 		ABCAD64A2AC72D130046A7E1 /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAD6492AC72D130046A7E1 /* RewardsView.swift */; };
 		ABCAD64C2AC735550046A7E1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAD64B2AC735550046A7E1 /* NotificationView.swift */; };
 		ABCAD64E2AC73D0B0046A7E1 /* CustomFostkBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAD64D2AC73D0B0046A7E1 /* CustomFostkBackground.swift */; };
+		ABCAD6502AC759740046A7E1 /* DashBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAD64F2AC759740046A7E1 /* DashBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +69,7 @@
 		AB1059CC2AB8BF270086FF97 /* HealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1059D02AB8BF270086FF97 /* HealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITests.swift; sourceTree = "<group>"; };
 		AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AB1059DF2AB8CBBD0086FF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AB1059DF2AB8CBBD0086FF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB4E1E952ABF6AE200380AFD /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		AB4E1E972ABF89A600380AFD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AB4E1E992ABF997D00380AFD /* GridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		ABCAD6492AC72D130046A7E1 /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
 		ABCAD64B2AC735550046A7E1 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		ABCAD64D2AC73D0B0046A7E1 /* CustomFostkBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFostkBackground.swift; sourceTree = "<group>"; };
+		ABCAD64F2AC759740046A7E1 /* DashBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +151,6 @@
 				AB8948FB2AB8CFE600161B88 /* Model */,
 				AB8948FA2AB8CFE000161B88 /* ViewModel */,
 				AB8948F92AB8CFDB00161B88 /* View */,
-				AB1059DF2AB8CBBD0086FF97 /* Info.plist */,
 				AB1059B92AB8BF270086FF97 /* Assets.xcassets */,
 				ABBFD0412AB8E598002000B8 /* Fonts */,
 				AB1059BB2AB8BF270086FF97 /* Preview Content */,
@@ -189,12 +190,14 @@
 				AB8949022AB8D6C400161B88 /* Componants */,
 				AB1059B52AB8BF260086FF97 /* HealApp.swift */,
 				AB1059B72AB8BF260086FF97 /* MainView.swift */,
+				ABCAD64F2AC759740046A7E1 /* DashBoard.swift */,
 				AB4E1E972ABF89A600380AFD /* ProfileView.swift */,
 				ABCAD6492AC72D130046A7E1 /* RewardsView.swift */,
 				ABCAD64B2AC735550046A7E1 /* NotificationView.swift */,
 				AB4E1E9B2AC0CF8E00380AFD /* LoginRegisterView.swift */,
 				ABAEB81F2AB90BE600696578 /* ForgotPasswordView.swift */,
 				AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */,
+				AB1059DF2AB8CBBD0086FF97 /* Info.plist */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				AB4E1E962ABF6AE200380AFD /* SideMenu.swift in Sources */,
 				ABCAD64C2AC735550046A7E1 /* NotificationView.swift in Sources */,
 				AB7950FB2ABB209B004E6E71 /* Test.swift in Sources */,
+				ABCAD6502AC759740046A7E1 /* DashBoard.swift in Sources */,
 				AB4E1E9A2ABF997D00380AFD /* GridItemView.swift in Sources */,
 				ABAEB8202AB90BE600696578 /* ForgotPasswordView.swift in Sources */,
 				AB7950FF2ABB2265004E6E71 /* GenderSelectionView.swift in Sources */,
