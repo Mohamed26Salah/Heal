@@ -17,6 +17,14 @@ struct MainView: View {
     var body: some View {
         GeometryReader { geomtry in
             ZStack(alignment: .topLeading) {
+                if showSideMenu {
+                    Color.black.opacity(0.001) // Transparent background
+                        .onTapGesture {
+                            withAnimation {
+                                showSideMenu = false
+                            }
+                        }
+                }
                 NavigationStack {
                     VStack{
                         TabView(selection: $selectedTap) {
@@ -67,6 +75,13 @@ struct MainView: View {
                             .padding(.top, 18)
                             .padding(.bottom, 63)
                     })
+                }
+            }
+            .onTapGesture {
+                if showSideMenu {
+                    withAnimation {
+                        showSideMenu = false
+                    }
                 }
             }
         }

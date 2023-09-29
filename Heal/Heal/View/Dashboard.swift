@@ -21,7 +21,7 @@ struct Dashboard: View {
                             Font.custom("Lato", size: 46)
                                 .weight(.bold)
                         )
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                         .padding(.horizontal, 15)
                     Spacer()
                 }
@@ -63,7 +63,7 @@ struct Dashboard: View {
                                             Font.custom("Lato", size: 21)
                                                 .weight(.medium)
                                         )
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.primary)
                                 }
                             }
                         }
