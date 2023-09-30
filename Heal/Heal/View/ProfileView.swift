@@ -61,7 +61,6 @@ struct ProfileView: View {
                     GridItemView().padding(.horizontal, 10)
                     GridItemView().padding(.horizontal, 10)
                 }
-
                 .padding(.horizontal, 10)
             }
         }
