@@ -11,7 +11,8 @@ struct Dashboard: View {
     let choicesArray = ["Daily", "Weekly", "Monthly"]
     @State private var selectedChoice: String = "Weekly"
     @State private var ballOffSetLocation: CGFloat = 0
-    
+    @State private var orientation = UIDevice.current.orientation
+
     var body: some View {
         GeometryReader { geomtry in
             VStack {
@@ -70,6 +71,17 @@ struct Dashboard: View {
                     }
                 }
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                self.orientation = UIDevice.current.orientation
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    let screenWidth = geomtry.size.width
+                    withAnimation {
+                        self.ballOffSetLocation = calculateOffset(for: selectedChoice, totalWidth: screenWidth)
+                    }
+                }
+            }
+
+
         }
     }
     private func calculateOffset(for choice: String, totalWidth: CGFloat) -> CGFloat {
