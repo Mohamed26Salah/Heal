@@ -10,6 +10,12 @@ import HealthKit
 
 import HealthKit
 
+enum TimeFrame {
+    case today
+    case daily
+    case weekly
+    case monthly
+}
 protocol HealthKitManaging {
     // Function to retrieve age, biological sex, and blood type
     func getAgeSexAndBloodType() throws -> (age: Int, biologicalSex: HKBiologicalSex, bloodType: HKBloodType)
@@ -18,19 +24,19 @@ protocol HealthKitManaging {
     func getMostRecentSample(for sampleType: HKSampleType, completion: @escaping (HKQuantitySample?, Error?) -> Void)
 
     // Function to retrieve step count for a specified time frame
-    func getStepCount(forTimeFrame timeFrame: HealthKitManager.TimeFrame, completion: @escaping (Double?, Error?) -> Void)
+    func getStepCount(forTimeFrame timeFrame: TimeFrame, completion: @escaping (Double?, Error?) -> Void)
 
     // Function to retrieve active energy burned for a specified time frame
-    func getActiveEnergyBurned(forTimeFrame timeFrame: HealthKitManager.TimeFrame, completion: @escaping (Double?, Error?) -> Void)
+    func getActiveEnergyBurned(forTimeFrame timeFrame: TimeFrame, completion: @escaping (Double?, Error?) -> Void)
 
     // Function to retrieve sleep analysis for a specified time frame
-    func getSleepAnalysis(forTimeFrame timeFrame: HealthKitManager.TimeFrame, completion: @escaping (Double?, Error?) -> Void)
+    func getSleepAnalysis(forTimeFrame timeFrame: TimeFrame, completion: @escaping (Double?, Error?) -> Void)
 
     // Function to retrieve distance walked or run for a specified time frame
-    func getDistanceWalkingRunning(forTimeFrame timeFrame: HealthKitManager.TimeFrame, completion: @escaping (Double?, Error?) -> Void)
+    func getDistanceWalkingRunning(forTimeFrame timeFrame: TimeFrame, completion: @escaping (Double?, Error?) -> Void)
 
     // Function to retrieve average heart rate for a specified time frame
-    func getAverageHeartRate(forTimeFrame timeFrame: HealthKitManager.TimeFrame, completion: @escaping (Double?, Error?) -> Void)
+    func getAverageHeartRate(forTimeFrame timeFrame: TimeFrame, completion: @escaping (Double?, Error?) -> Void)
 }
 
 class HealthKitManager: HealthKitManaging {
@@ -233,12 +239,6 @@ class HealthKitManager: HealthKitManaging {
 }
 //MARK: Helper Functions
 extension HealthKitManager {
-    enum TimeFrame {
-        case today
-        case daily
-        case weekly
-        case monthly
-    }
     private func calculateAge(birthdayComponents: DateComponents) -> Int {
         let today = Date()
         let calendar = Calendar.current

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Dashboard: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var healthViewModel: HealthViewModel
     @State private var selectedChoice: String = "Weekly"
     @Namespace private var test
     var body: some View {
@@ -15,7 +17,7 @@ struct Dashboard: View {
             ScrollView {
                 VStack(spacing: 40) {
                     HStack{
-                        Text("Hey Emily,")
+                        Text("Hey \(authViewModel.currentUser?.fullName ?? "N/A"),")
                             .font(
                                 Font.custom("Lato", size: 46)
                                     .weight(.bold)
@@ -27,10 +29,10 @@ struct Dashboard: View {
                     ChoicesFilter(oustideGeomtry: geomtry, selectedChoice: $selectedChoice)
                     MainDataView(oustideGeomtry: geomtry, test: _test)
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 17), count: 2), spacing: 43) {
-                        GridItemView().padding(.horizontal, 10)
-                        GridItemView().padding(.horizontal, 10)
-                        GridItemView().padding(.horizontal, 10)
-                        GridItemView().padding(.horizontal, 10)
+                        GridItemView(data: healthViewModel.stepCount).padding(.horizontal, 10)
+                        GridItemView(data: healthViewModel.heartRate).padding(.horizontal, 10)
+                        GridItemView(data: healthViewModel.sleepAnalysis).padding(.horizontal, 10)
+                        GridItemView(data: healthViewModel.activeEnergyBurned).padding(.horizontal, 10)
                     }
                     .padding(10)
                 }

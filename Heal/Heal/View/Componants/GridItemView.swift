@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct GridItemView: View {
+    var image: String = "squatGirl-EM"
+    var data: Double = 0.0
+    var message: String = "No Data"
     var body: some View {
         ZStack{
             GeometryReader { geometry in
                 Color.clear
                 ZStack(alignment:.leading){
-                    Image("squatGirl-EM")
+                    Image(image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width, height: geometry.size.height)
@@ -21,13 +24,13 @@ struct GridItemView: View {
                         .padding(.top, 40)
                         .padding(.leading, 45)
                     VStack{
-                        Text("2290kcal")
+                        Text(String(format: "%.2f", data))
                             .font(
                                 Font.custom("Lato", size: 25)
                                     .weight(.bold)
                             )
                             .foregroundColor(.primary)
-                        Text("Total calories burned")
+                        Text(message)
                             .font(
                                 Font.custom("Lato", size: 10)
                                     .weight(.light)

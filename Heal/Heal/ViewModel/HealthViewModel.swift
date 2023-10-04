@@ -7,10 +7,16 @@
 
 import Foundation
 import HealthKit
+@MainActor
 class HealthViewModel: ObservableObject {
     
     @Published var userHealthProfile: UserHealthProfile?
-    
+    @Published var stepCount: Double = 0.0
+    @Published var heartRate: Double = 0.0
+    @Published var activeEnergyBurned: Double = 0.0
+    @Published var sleepAnalysis: Double = 0.0
+    @Published var distanceWalkingRunning: Double = 0.0
+    @Published var timeFrame: TimeFrame = .weekly
     var healthStore: HKHealthStore!
     private let healthKitManager: HealthKitManaging
     init(healthKitManager: HealthKitManaging = HealthKitManager()) {
@@ -49,6 +55,11 @@ class HealthViewModel: ObservableObject {
         getUserHeathProfileData()
         getUserHeight()
         getUserWeight()
+        getUserStepCount()
+        getUserHeartRate()
+        getUserActiveEnergyBurned()
+        getUserSleepAnalysis()
+        getDistanceWalkingRunning()
     }
     private func getUserHeathProfileData() {
         do {
@@ -66,14 +77,16 @@ class HealthViewModel: ObservableObject {
           return
         }
         healthKitManager.getMostRecentSample(for: heightSampleType) { (sample, error) in
-          guard let sample = sample else {
-            if let error = error {
-                print("getUserHeight Error \(error)")
+            DispatchQueue.main.async {
+                guard let sample = sample else {
+                    if let error = error {
+                        print("getUserHeight Error \(error)")
+                    }
+                    return
+                }
+                let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
+                self.userHealthProfile?.height = heightInMeters
             }
-            return
-          }
-          let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
-            self.userHealthProfile?.height = heightInMeters
         }
     }
     private func getUserWeight() {
@@ -82,16 +95,83 @@ class HealthViewModel: ObservableObject {
           return
         }
         healthKitManager.getMostRecentSample(for: weightSampleType) { (sample, error) in
-          guard let sample = sample else {
-            if let error = error {
-                print("getUserWeight Error \(error)")
+            DispatchQueue.main.async {
+                guard let sample = sample else {
+                    if let error = error {
+                        print("getUserWeight Error \(error)")
+                    }
+                    return
+                }
+                let weightInKilograms = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+                self.userHealthProfile?.weight = weightInKilograms
             }
-            return
-          }
-          let weightInKilograms = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
-            self.userHealthProfile?.weight = weightInKilograms
         }
 
+    }
+    private func getUserStepCount() {
+        healthKitManager.getStepCount(forTimeFrame: timeFrame) { stepCount, error in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print(error)
+                    return
+                }
+                if let stepCount = stepCount {
+                    self.stepCount = stepCount
+                }
+            }
+        }
+    }
+    private func getUserHeartRate() {
+        healthKitManager.getAverageHeartRate(forTimeFrame: timeFrame) { avgHeartRate, error in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print(error)
+                    return
+                }
+                if let avgHeartRate = avgHeartRate {
+                    self.heartRate = avgHeartRate
+                }
+            }
+        }
+    }
+    private func getUserActiveEnergyBurned() {
+        healthKitManager.getActiveEnergyBurned(forTimeFrame: timeFrame) { activeEnergyBurned, error in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print(error)
+                    return
+                }
+                if let activeEnergyBurned = activeEnergyBurned {
+                    self.activeEnergyBurned = activeEnergyBurned
+                }
+            }
+        }
+    }
+    private func getUserSleepAnalysis() {
+        healthKitManager.getSleepAnalysis(forTimeFrame: timeFrame) { sleepAnalysis, error in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print(error)
+                    return
+                }
+                if let sleepAnalysis = sleepAnalysis {
+                    self.sleepAnalysis = sleepAnalysis
+                }
+            }
+        }
+    }
+    private func getDistanceWalkingRunning() {
+        healthKitManager.getDistanceWalkingRunning(forTimeFrame: timeFrame) { distanceWalkingRunning, error in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print(error)
+                    return
+                }
+                if let distanceWalkingRunning = distanceWalkingRunning {
+                    self.distanceWalkingRunning = distanceWalkingRunning
+                }
+            }
+        }
     }
 
 }
