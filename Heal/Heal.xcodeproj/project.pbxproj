@@ -14,6 +14,7 @@
 		AB1059C72AB8BF270086FF97 /* HealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059C62AB8BF270086FF97 /* HealTests.swift */; };
 		AB1059D12AB8BF270086FF97 /* HealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D02AB8BF270086FF97 /* HealUITests.swift */; };
 		AB1059D32AB8BF270086FF97 /* HealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */; };
+		AB2749AD2ACDCA6400EDE8AC /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2749AC2ACDCA6400EDE8AC /* UserHealthProfile.swift */; };
 		AB4E1E962ABF6AE200380AFD /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E1E952ABF6AE200380AFD /* SideMenu.swift */; };
 		AB4E1E982ABF89A600380AFD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E1E972ABF89A600380AFD /* ProfileView.swift */; };
 		AB4E1E9A2ABF997D00380AFD /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E1E992ABF997D00380AFD /* GridItemView.swift */; };
@@ -30,6 +31,7 @@
 		AB7D541E2AC84DF000046709 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D541D2AC84DF000046709 /* CircularProgressView.swift */; };
 		AB7D54202AC85AE900046709 /* Extenstion + Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D541F2AC85AE900046709 /* Extenstion + Timer.swift */; };
 		AB8948FF2AB8D41400161B88 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */; };
+		AB98CA042ACD95EF0066C7D3 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98CA032ACD95EF0066C7D3 /* HealthKitManager.swift */; };
 		ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAEB81B2AB8F72700696578 /* SecureTextField.swift */; };
 		ABAEB8202AB90BE600696578 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAEB81F2AB90BE600696578 /* ForgotPasswordView.swift */; };
 		ABBFD0442AB8EBB9002000B8 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABBFD0432AB8EBB9002000B8 /* Poppins-Bold.ttf */; };
@@ -41,6 +43,7 @@
 		ABCAD64C2AC735550046A7E1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAD64B2AC735550046A7E1 /* NotificationView.swift */; };
 		ABCAD64E2AC73D0B0046A7E1 /* CustomFostkBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAD64D2AC73D0B0046A7E1 /* CustomFostkBackground.swift */; };
 		ABCAD6522AC75A050046A7E1 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAD6512AC75A050046A7E1 /* Dashboard.swift */; };
+		ABCE3E7F2AC9FC6F00CCAE78 /* HealthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE3E7E2AC9FC6F00CCAE78 /* HealthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,7 @@
 		AB1059D02AB8BF270086FF97 /* HealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITests.swift; sourceTree = "<group>"; };
 		AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB1059DF2AB8CBBD0086FF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AB2749AC2ACDCA6400EDE8AC /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
 		AB4E1E952ABF6AE200380AFD /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		AB4E1E972ABF89A600380AFD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AB4E1E992ABF997D00380AFD /* GridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 		AB7D541D2AC84DF000046709 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		AB7D541F2AC85AE900046709 /* Extenstion + Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenstion + Timer.swift"; sourceTree = "<group>"; };
 		AB8948FE2AB8D41400161B88 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		AB98CA032ACD95EF0066C7D3 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		ABAEB81B2AB8F72700696578 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 		ABAEB81F2AB90BE600696578 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		ABBFD0422AB8E8B2002000B8 /* OpenSans-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
@@ -96,6 +101,8 @@
 		ABCAD64B2AC735550046A7E1 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		ABCAD64D2AC73D0B0046A7E1 /* CustomFostkBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFostkBackground.swift; sourceTree = "<group>"; };
 		ABCAD6512AC75A050046A7E1 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		ABCE3E7D2AC9FB2100CCAE78 /* Heal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heal.entitlements; sourceTree = "<group>"; };
+		ABCE3E7E2AC9FC6F00CCAE78 /* HealthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +157,7 @@
 		AB1059B42AB8BF260086FF97 /* Heal */ = {
 			isa = PBXGroup;
 			children = (
+				ABCE3E7D2AC9FB2100CCAE78 /* Heal.entitlements */,
 				AB7951022ABB2E51004E6E71 /* GoogleService-Info.plist */,
 				ABBFD04B2AB8F1FC002000B8 /* Extenstions */,
 				AB8948FB2AB8CFE600161B88 /* Model */,
@@ -157,6 +165,7 @@
 				AB8948F92AB8CFDB00161B88 /* View */,
 				AB1059DF2AB8CBBD0086FF97 /* Info.plist */,
 				AB1059B92AB8BF270086FF97 /* Assets.xcassets */,
+				AB98CA022ACD95D50066C7D3 /* HealthKit */,
 				ABBFD0412AB8E598002000B8 /* Fonts */,
 				AB1059BB2AB8BF270086FF97 /* Preview Content */,
 				AB7950FA2ABB209B004E6E71 /* Test.swift */,
@@ -209,6 +218,7 @@
 		AB8948FA2AB8CFE000161B88 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				ABCE3E7E2AC9FC6F00CCAE78 /* HealthViewModel.swift */,
 				AB7951052ABB3152004E6E71 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
@@ -218,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7951002ABB28C7004E6E71 /* User.swift */,
+				AB2749AC2ACDCA6400EDE8AC /* UserHealthProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,6 +245,14 @@
 				AB7D541D2AC84DF000046709 /* CircularProgressView.swift */,
 			);
 			path = Componants;
+			sourceTree = "<group>";
+		};
+		AB98CA022ACD95D50066C7D3 /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				AB98CA032ACD95EF0066C7D3 /* HealthKitManager.swift */,
+			);
+			path = HealthKit;
 			sourceTree = "<group>";
 		};
 		ABBFD0412AB8E598002000B8 /* Fonts */ = {
@@ -401,12 +420,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCAD64E2AC73D0B0046A7E1 /* CustomFostkBackground.swift in Sources */,
+				ABCE3E7F2AC9FC6F00CCAE78 /* HealthViewModel.swift in Sources */,
 				ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */,
 				AB7D541E2AC84DF000046709 /* CircularProgressView.swift in Sources */,
 				ABBFD04A2AB8F1C0002000B8 /* CustomTextField.swift in Sources */,
+				AB2749AD2ACDCA6400EDE8AC /* UserHealthProfile.swift in Sources */,
 				AB4E1E962ABF6AE200380AFD /* SideMenu.swift in Sources */,
 				ABCAD6522AC75A050046A7E1 /* Dashboard.swift in Sources */,
 				ABCAD64C2AC735550046A7E1 /* NotificationView.swift in Sources */,
+				AB98CA042ACD95EF0066C7D3 /* HealthKitManager.swift in Sources */,
 				AB7950FB2ABB209B004E6E71 /* Test.swift in Sources */,
 				AB4E1E9A2ABF997D00380AFD /* GridItemView.swift in Sources */,
 				ABAEB8202AB90BE600696578 /* ForgotPasswordView.swift in Sources */,
@@ -575,6 +597,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Heal/Heal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heal/Preview Content\"";
@@ -582,6 +605,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Heal/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app wants to update your health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -605,6 +630,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Heal/Heal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heal/Preview Content\"";
@@ -612,6 +638,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Heal/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app wants to update your health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";

@@ -7,18 +7,21 @@
 
 import SwiftUI
 import Firebase
+import HealthKit
 @main
 struct HealApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var authViewModel = AuthViewModel()
-//    init(){
-//        FirebaseApp.configure()
-//    }
+    @StateObject var healthViewModel = HealthViewModel()
+    //    init(){
+    //        FirebaseApp.configure()
+    //    }
     var body: some Scene {
         WindowGroup {
             if authViewModel.userSession != nil {
                 MainView()
                     .environmentObject(authViewModel)
+                    .environmentObject(healthViewModel)
                     .transition(.opacity)
             } else {
                 LoginRegisterView()
@@ -29,9 +32,10 @@ struct HealApp: App {
     }
 }
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-    return true
-  }
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
 }
+
