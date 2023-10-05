@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct GridItemView: View {
-    var image: String = "squatGirl-EM"
-    var data: Double = 0.0
+    var image: String = "burningCalories"
+    var data: String = "0.0"
     var message: String = "No Data"
+    var unit: String = "N/A"
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -22,14 +23,22 @@ struct GridItemView: View {
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .clipped()
                         .padding(.top, 40)
-                        .padding(.leading, 45)
-                    VStack{
-                        Text(String(format: "%.2f", data))
-                            .font(
-                                Font.custom("Lato", size: 25)
-                                    .weight(.bold)
-                            )
-                            .foregroundColor(.primary)
+                        .padding(.leading, 65)
+                    VStack(alignment: .leading){
+                        HStack(spacing: 2) {
+                            Text(data)
+                                .font(
+                                    Font.custom("Lato", size: 25)
+                                        .weight(.bold)
+                                )
+                                .foregroundColor(.primary)
+                            Text(unit)
+                                .font(
+                                    Font.custom("Lato", size: 12)
+                                        .weight(.bold)
+                                )
+                                .foregroundColor(.gray)
+                        }
                         Text(message)
                             .font(
                                 Font.custom("Lato", size: 10)

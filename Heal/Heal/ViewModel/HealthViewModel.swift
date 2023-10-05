@@ -7,26 +7,58 @@
 
 import Foundation
 import HealthKit
+import Firebase
+import Combine
+import SwiftUI
+
+enum ImagesController: String {
+    case sleep = "sleeping"
+    case stepCount = "walking"
+    case activeEnergyBurned = "burningCalories"
+    case heartRate = "heart"
+    case distanceWalkingRunning = "walkingDistance"
+    case profile = "profile"
+    
+    func imageName(isGirl: Bool = false) -> String {
+        if isGirl {
+            return self.rawValue + "G"
+        } else {
+            return self.rawValue
+        }
+    }
+}
+
+
 @MainActor
 class HealthViewModel: ObservableObject {
     
     @Published var userHealthProfile: UserHealthProfile?
-    @Published var stepCount: Double = 0.0
-    @Published var heartRate: Double = 0.0
-    @Published var activeEnergyBurned: Double = 0.0
-    @Published var sleepAnalysis: Double = 0.0
-    @Published var distanceWalkingRunning: Double = 0.0
-    @Published var timeFrame: TimeFrame = .weekly
+    @Published var activityHealthDataArray: [UserHealthActivity] = [UserHealthActivity]()
+    var cancellables = Set<AnyCancellable>()
+    var authViewModel: AuthViewModel
     var healthStore: HKHealthStore!
+    var isUserGirl: Bool = false
     private let healthKitManager: HealthKitManaging
-    init(healthKitManager: HealthKitManaging = HealthKitManager()) {
+    
+    init(healthKitManager: HealthKitManaging = HealthKitManager(), authVm: AuthViewModel) {
         guard HKHealthStore.isHealthDataAvailable() else { fatalError("This app requires a device that supports HealthKit") }
         self.healthKitManager = healthKitManager
+        self.authViewModel = authVm
+        authViewModel.$currentUser
+            .sink { [weak self] user in
+                self?.activityHealthDataArray.removeAll()
+                if user != nil {
+                    self?.isUserGirl = (user?.gender == .female)
+                    self?.initialize(timeFrame: .weekly)
+                }
+            }
+            .store(in: &cancellables)
         healthStore = HKHealthStore()
         requestHealthkitPermissions()
         userHealthProfile = UserHealthProfile()
-        initialize()
+        
     }
+    
     private func requestHealthkitPermissions() {
         let healthKitTypesToWrite = Set([
             HKObjectType.quantityType(forIdentifier: .bodyMassIndex)!,
@@ -51,15 +83,15 @@ class HealthViewModel: ObservableObject {
             print("Request Authorization -- Success: ", success, " Error: ", error ?? "nil")
         }
     }
-    func initialize() {
+    func initialize(timeFrame: TimeFrame) {
         getUserHeathProfileData()
         getUserHeight()
         getUserWeight()
-        getUserStepCount()
-        getUserHeartRate()
-        getUserActiveEnergyBurned()
-        getUserSleepAnalysis()
-        getDistanceWalkingRunning()
+        getUserStepCount(for: timeFrame)
+        getUserHeartRate(for: timeFrame)
+        getUserActiveEnergyBurned(for: timeFrame)
+        getUserSleepAnalysis(for: timeFrame)
+        getDistanceWalkingRunning(for: timeFrame)
     }
     private func getUserHeathProfileData() {
         do {
@@ -108,7 +140,7 @@ class HealthViewModel: ObservableObject {
         }
 
     }
-    private func getUserStepCount() {
+    private func getUserStepCount(for timeFrame: TimeFrame) {
         healthKitManager.getStepCount(forTimeFrame: timeFrame) { stepCount, error in
             DispatchQueue.main.async {
                 guard error == nil else {
@@ -116,12 +148,13 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let stepCount = stepCount {
-                    self.stepCount = stepCount
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",stepCount), message: "steps", image: ImagesController.stepCount.imageName(isGirl: self.isUserGirl), unit: "steps"))
+//                    self.stepCount = stepCount
                 }
             }
         }
     }
-    private func getUserHeartRate() {
+    private func getUserHeartRate(for timeFrame: TimeFrame) {
         healthKitManager.getAverageHeartRate(forTimeFrame: timeFrame) { avgHeartRate, error in
             DispatchQueue.main.async {
                 guard error == nil else {
@@ -129,12 +162,13 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let avgHeartRate = avgHeartRate {
-                    self.heartRate = avgHeartRate
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f", avgHeartRate), message: "Take Car of you Heart", image: ImagesController.heartRate.imageName(isGirl: self.isUserGirl), unit: "rpm"))
+//                    self.heartRate = avgHeartRate
                 }
             }
         }
     }
-    private func getUserActiveEnergyBurned() {
+    private func getUserActiveEnergyBurned(for timeFrame: TimeFrame) {
         healthKitManager.getActiveEnergyBurned(forTimeFrame: timeFrame) { activeEnergyBurned, error in
             DispatchQueue.main.async {
                 guard error == nil else {
@@ -142,12 +176,12 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let activeEnergyBurned = activeEnergyBurned {
-                    self.activeEnergyBurned = activeEnergyBurned
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",activeEnergyBurned), message: "Yeaaaah Lets Go", image: ImagesController.activeEnergyBurned.imageName(isGirl: self.isUserGirl), unit: "kcal"))
                 }
             }
         }
     }
-    private func getUserSleepAnalysis() {
+    private func getUserSleepAnalysis(for timeFrame: TimeFrame) {
         healthKitManager.getSleepAnalysis(forTimeFrame: timeFrame) { sleepAnalysis, error in
             DispatchQueue.main.async {
                 guard error == nil else {
@@ -155,12 +189,12 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let sleepAnalysis = sleepAnalysis {
-                    self.sleepAnalysis = sleepAnalysis
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",sleepAnalysis), message: "Go To Sleep", image: ImagesController.sleep.imageName(isGirl: self.isUserGirl), unit: "hours"))
                 }
             }
         }
     }
-    private func getDistanceWalkingRunning() {
+    private func getDistanceWalkingRunning(for timeFrame: TimeFrame) {
         healthKitManager.getDistanceWalkingRunning(forTimeFrame: timeFrame) { distanceWalkingRunning, error in
             DispatchQueue.main.async {
                 guard error == nil else {
@@ -168,12 +202,19 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let distanceWalkingRunning = distanceWalkingRunning {
-                    self.distanceWalkingRunning = distanceWalkingRunning
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",distanceWalkingRunning), message: "Lets Travel", image: ImagesController.distanceWalkingRunning.imageName(isGirl: self.isUserGirl), unit: "km"))
                 }
             }
         }
     }
+    func updateHealthData(for timeFrame: TimeFrame) {
+           DispatchQueue.main.async {
+               withAnimation(.easeInOut(duration: 0.5)) {
+                   self.initialize(timeFrame: timeFrame)
+               }
+               self.activityHealthDataArray.removeAll()
+           }
+    }
 
 }
 extension HKHealthStore: ObservableObject{}
-

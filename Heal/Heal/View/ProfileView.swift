@@ -34,7 +34,7 @@ struct ProfileView: View {
                             .background(Color(red: 0.88, green: 0.99, blue: 1))
                             .cornerRadius(geometry.size.width * scaleFactorForWidthBackground / 2)
                         
-                        Image("casual-life-3d-young-woman-")
+                        Image(ImagesController.profile.imageName(isGirl: authViewModel.currentUser?.gender == .female))
                             .resizable()
                             .scaledToFit()
                             .frame(width: geometry.size.width * scaleFactorForImage,

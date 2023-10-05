@@ -10,7 +10,7 @@ import HealthKit
 
 import HealthKit
 
-enum TimeFrame {
+enum TimeFrame: String {
     case today
     case daily
     case weekly
@@ -173,7 +173,6 @@ class HealthKitManager: HealthKitManaging {
             var totalSleepTime = 0.0
 
             if let results = results {
-                print("First")
                 for result in results {
                     if let result = result as? HKCategorySample{
                         totalSleepTime += result.endDate.timeIntervalSince(result.startDate)

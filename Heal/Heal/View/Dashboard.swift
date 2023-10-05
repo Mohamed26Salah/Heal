@@ -10,7 +10,7 @@ import SwiftUI
 struct Dashboard: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var healthViewModel: HealthViewModel
-    @State private var selectedChoice: String = "Weekly"
+    @State private var selectedChoice: TimeFrame = .weekly
     @Namespace private var test
     var body: some View {
         GeometryReader { geomtry in
@@ -29,25 +29,29 @@ struct Dashboard: View {
                     ChoicesFilter(oustideGeomtry: geomtry, selectedChoice: $selectedChoice)
                     MainDataView(oustideGeomtry: geomtry, test: _test)
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 17), count: 2), spacing: 43) {
-                        GridItemView(data: healthViewModel.stepCount).padding(.horizontal, 10)
-                        GridItemView(data: healthViewModel.heartRate).padding(.horizontal, 10)
-                        GridItemView(data: healthViewModel.sleepAnalysis).padding(.horizontal, 10)
-                        GridItemView(data: healthViewModel.activeEnergyBurned).padding(.horizontal, 10)
+                        ForEach(healthViewModel.activityHealthDataArray) { row in
+                            GridItemView(image: row.image, data: row.data, message: row.message, unit: row.unit).padding(.horizontal, 10)
+                        }
                     }
                     .padding(10)
+                    .scaleEffect(self.healthViewModel.activityHealthDataArray.isEmpty ? 0.5 : 1.0)
+                    .animation(.easeInOut(duration: 0.5), value: self.healthViewModel.activityHealthDataArray)
                 }
             }
         }
+        .onChange(of: selectedChoice, perform: { newTimeFrame in
+            healthViewModel.updateHealthData(for: newTimeFrame)
+        })
     }
 //    var testView: some View {
 //        Text("Sakah")
 //    }
     struct ChoicesFilter:View {
         var oustideGeomtry: GeometryProxy
-        let choicesArray = ["Daily", "Weekly", "Monthly"]
+        let choicesArray: [TimeFrame] = [.today, .weekly, .monthly]
         @State private var ballOffSetLocation: CGFloat = 0
         @State private var orientation = UIDevice.current.orientation
-        @Binding var selectedChoice: String
+        @Binding var selectedChoice: TimeFrame
         var body: some View {
             ZStack{
                 Image("Ellipse 5")
@@ -82,7 +86,7 @@ struct Dashboard: View {
                                     )
                                     .background(.ultraThinMaterial)
                                 
-                                Text(choice)
+                                Text(choice.rawValue)
                                     .font(
                                         Font.custom("Lato", size: 21)
                                             .weight(.medium)
@@ -103,14 +107,14 @@ struct Dashboard: View {
                 }
             }
         }
-        private func calculateOffset(for choice: String, totalWidth: CGFloat) -> CGFloat {
+        private func calculateOffset(for choice: TimeFrame, totalWidth: CGFloat) -> CGFloat {
             let offsetValue = totalWidth / CGFloat(choicesArray.count) // Calculate offset based on total width and number of choices
             switch choice {
-            case "Daily":
+            case .today:
                 return -offsetValue
-            case "Weekly":
+            case .weekly:
                 return 0
-            case "Monthly":
+            case .monthly:
                 return offsetValue
             default:
                 return 0

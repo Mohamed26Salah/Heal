@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 protocol AuthenticationFormProtocol {
     var formIsValid: Bool {get}
 }
+
 @MainActor
 struct ErrorDetails: Identifiable {
     let name: String
@@ -26,6 +27,7 @@ class AuthViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var error: ErrorDetails?
     @Published var showLoading: Bool = false
+    @Published var isLoading: Bool = true
     init() {
         self.userSession = Auth.auth().currentUser
         Task{
@@ -81,5 +83,6 @@ class AuthViewModel: ObservableObject {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         guard let snapShot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
         self.currentUser = try? snapShot.data(as: User.self)
+        self.isLoading = false
     }
 }
