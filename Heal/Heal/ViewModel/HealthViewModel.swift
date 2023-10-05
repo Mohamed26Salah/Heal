@@ -148,7 +148,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let stepCount = stepCount {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",stepCount), message: "steps", image: ImagesController.stepCount.imageName(isGirl: self.isUserGirl), unit: "steps"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",stepCount), message: "steps", image: ImagesController.stepCount.imageName(isGirl: self.isUserGirl), unit: "steps", name: "Steps Count"))
 //                    self.stepCount = stepCount
                 }
             }
@@ -162,7 +162,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let avgHeartRate = avgHeartRate {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f", avgHeartRate), message: "Take Car of you Heart", image: ImagesController.heartRate.imageName(isGirl: self.isUserGirl), unit: "rpm"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f", avgHeartRate), message: "Take Car of you Heart", image: ImagesController.heartRate.imageName(isGirl: self.isUserGirl), unit: "rpm", name: "Heart Rate"))
 //                    self.heartRate = avgHeartRate
                 }
             }
@@ -176,7 +176,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let activeEnergyBurned = activeEnergyBurned {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",activeEnergyBurned), message: "Yeaaaah Lets Go", image: ImagesController.activeEnergyBurned.imageName(isGirl: self.isUserGirl), unit: "kcal"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",activeEnergyBurned), message: "Yeaaaah Lets Go", image: ImagesController.activeEnergyBurned.imageName(isGirl: self.isUserGirl), unit: "kcal", name: "Active Energy"))
                 }
             }
         }
@@ -189,7 +189,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let sleepAnalysis = sleepAnalysis {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",sleepAnalysis), message: "Go To Sleep", image: ImagesController.sleep.imageName(isGirl: self.isUserGirl), unit: "hours"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",sleepAnalysis), message: "Go To Sleep", image: ImagesController.sleep.imageName(isGirl: self.isUserGirl), unit: "hours", name: "Sleep Analysis"))
                 }
             }
         }
@@ -202,7 +202,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let distanceWalkingRunning = distanceWalkingRunning {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",distanceWalkingRunning), message: "Lets Travel", image: ImagesController.distanceWalkingRunning.imageName(isGirl: self.isUserGirl), unit: "km"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",distanceWalkingRunning), message: "Lets Travel", image: ImagesController.distanceWalkingRunning.imageName(isGirl: self.isUserGirl), unit: "km", name: "Distance Covered"))
                 }
             }
         }

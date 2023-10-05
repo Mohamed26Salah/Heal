@@ -27,7 +27,7 @@ struct Dashboard: View {
                         Spacer()
                     }
                     ChoicesFilter(oustideGeomtry: geomtry, selectedChoice: $selectedChoice)
-                    MainDataView(oustideGeomtry: geomtry, test: _test)
+                    MainDataView(oustideGeomtry: geomtry, test: _test, cardObject: healthViewModel.activityHealthDataArray.first ?? UserHealthActivity(data: "N/A", message: "N/A", image: "walking", unit: "N/A", name: "N/A"))
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 17), count: 2), spacing: 43) {
                         ForEach(healthViewModel.activityHealthDataArray) { row in
                             GridItemView(image: row.image, data: row.data, message: row.message, unit: row.unit).padding(.horizontal, 10)
@@ -124,6 +124,7 @@ struct Dashboard: View {
     struct MainDataView: View {
         var oustideGeomtry: GeometryProxy
         var test: Namespace
+        var cardObject: UserHealthActivity
         @State private var progress: CGFloat = 0.0
         @State private var progressNumeric: CGFloat = 0.0
         @State private var number: Int = 0
@@ -134,14 +135,14 @@ struct Dashboard: View {
                     Color.clear
                     ZStack {
                         VStack{
-                            Text("Sleep Analysis")
+                            Text(cardObject.name)
                                 .font(
                                     Font.custom("Lato", size: 25)
                                         .weight(.bold)
                                 )
                                 .foregroundColor(.primary)
                                 .padding(.top, 11)
-                            HStack{
+                            HStack(spacing: 5){
                                 ZStack{
                                     CircularProgressView(progress: progress)
                                         .frame(width: 150,height: 150)
@@ -163,13 +164,21 @@ struct Dashboard: View {
                                 .padding(.leading, 20)
                                 Spacer()
                                 VStack{
-                                    Text("7h 30m")
-                                        .font(
-                                            Font.custom("Lato", size: 25)
-                                                .weight(.bold)
-                                        )
-                                        .foregroundColor(.primary)
-                                    Text("Sleep Duration")
+                                    HStack(spacing: 2){
+                                        Text(cardObject.data)
+                                            .font(
+                                                Font.custom("Lato", size: 25)
+                                                    .weight(.bold)
+                                            )
+                                            .foregroundColor(.primary)
+                                        Text(cardObject.unit)
+                                            .font(
+                                                Font.custom("Lato", size: 12)
+                                                    .weight(.bold)
+                                            )
+                                            .foregroundColor(.gray)
+                                    }
+                                    Text(cardObject.message)
                                         .font(
                                             Font.custom("Lato", size: 16)
                                                 .weight(.light)
@@ -178,13 +187,12 @@ struct Dashboard: View {
                                 }
                                 .padding(.trailing, 45)
                             }
-                            Image("SleepingGirl")
+                            Image(cardObject.image)
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 312, height: 128)
-                                .padding(.leading, 60)
-                                .padding(.top, -30)
-                                .matchedGeometryEffect(id: "Image", in: test.wrappedValue)
+                                .frame(width: 312, height: 312)
+                                .padding(.leading, 90)
+                                .padding(.top, -50)
+//                                .matchedGeometryEffect(id: "Image", in: test.wrappedValue)
                         }
                     }
                 }
