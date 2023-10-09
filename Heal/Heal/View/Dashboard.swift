@@ -11,7 +11,8 @@ struct Dashboard: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var healthViewModel: HealthViewModel
     @State private var selectedChoice: TimeFrame = .weekly
-    @Namespace private var test
+//    @State private var progress: CGFloat = 0.0
+//    @Namespace private var test
     var body: some View {
         GeometryReader { geomtry in
             ScrollView {
@@ -27,10 +28,27 @@ struct Dashboard: View {
                         Spacer()
                     }
                     ChoicesFilter(oustideGeomtry: geomtry, selectedChoice: $selectedChoice)
-                    MainDataView(oustideGeomtry: geomtry, test: _test, cardObject: healthViewModel.activityHealthDataArray.first ?? UserHealthActivity(data: "N/A", message: "N/A", image: "walking", unit: "N/A", name: "N/A"))
+                    if healthViewModel.activityHealthDataArray.isEmpty{
+                        ProgressView()
+                            .tint(Color.mint)
+                            .scaleEffect(3)
+                    } else {
+                        MainDataView(oustideGeomtry: geomtry, cardObject: healthViewModel.mainItemView, progress: $healthViewModel.mainItemProgress, selectedChoice: $selectedChoice)
+                            .onAppear{
+                                healthViewModel.mainItemView = healthViewModel.activityHealthDataArray.first ?? UserHealthActivity.MOCK_UserHealthActivity
+                                healthViewModel.mainItemProgress = healthViewModel.checkTheProgress(time: selectedChoice, userHealthActivity: healthViewModel.mainItemView)
+                            }
+//                            .redacted(reason: .placeholder)
+                    }
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 17), count: 2), spacing: 43) {
                         ForEach(healthViewModel.activityHealthDataArray) { row in
-                            GridItemView(image: row.image, data: row.data, message: row.message, unit: row.unit).padding(.horizontal, 10)
+                            GridItemView(userHealthActivity: row).padding(.horizontal, 10)
+                                .onTapGesture {
+                                    withAnimation {
+                                        healthViewModel.mainItemView = row
+                                        healthViewModel.mainItemProgress = healthViewModel.checkTheProgress(time: selectedChoice, userHealthActivity: row)
+                                    }
+                                }
                         }
                     }
                     .padding(10)
@@ -41,6 +59,7 @@ struct Dashboard: View {
         }
         .onChange(of: selectedChoice, perform: { newTimeFrame in
             healthViewModel.updateHealthData(for: newTimeFrame)
+//            print(healthViewModel.mainItemProgress)
         })
     }
 //    var testView: some View {
@@ -123,12 +142,12 @@ struct Dashboard: View {
     }
     struct MainDataView: View {
         var oustideGeomtry: GeometryProxy
-        var test: Namespace
+//        var test: Namespace.ID
         var cardObject: UserHealthActivity
-        @State private var progress: CGFloat = 0.0
-        @State private var progressNumeric: CGFloat = 0.0
         @State private var number: Int = 0
         @State private var busy: Bool = false
+        @Binding var progress: CGFloat
+        @Binding var selectedChoice: TimeFrame
         var body: some View {
             ZStack{
                 GeometryReader { geometry in
@@ -153,7 +172,7 @@ struct Dashboard: View {
                                                     .weight(.light)
                                             )
                                             .foregroundColor(.primary)
-                                        Text("\(number) %")
+                                        Text("\(progress) %")
                                             .font(
                                                 Font.custom("Lato", size: 25)
                                                     .weight(.bold)
@@ -171,12 +190,14 @@ struct Dashboard: View {
                                                     .weight(.bold)
                                             )
                                             .foregroundColor(.primary)
+//                                            .matchedGeometryEffect(id:"data"+cardObject.id.uuidString,in:test)
                                         Text(cardObject.unit)
                                             .font(
                                                 Font.custom("Lato", size: 12)
                                                     .weight(.bold)
                                             )
                                             .foregroundColor(.gray)
+//                                            .matchedGeometryEffect(id:"unit"+cardObject.id.uuidString,in:test)
                                     }
                                     Text(cardObject.message)
                                         .font(
@@ -184,15 +205,16 @@ struct Dashboard: View {
                                                 .weight(.light)
                                         )
                                         .foregroundColor(.primary)
+//                                        .matchedGeometryEffect(id:"message"+cardObject.id.uuidString,in:test)
                                 }
                                 .padding(.trailing, 45)
                             }
                             Image(cardObject.image)
                                 .resizable()
-                                .frame(width: 312, height: 312)
+                                .frame(width: 200, height: 312)
                                 .padding(.leading, 90)
                                 .padding(.top, -50)
-//                                .matchedGeometryEffect(id: "Image", in: test.wrappedValue)
+//                                .matchedGeometryEffect(id:"image"+cardObject.id.uuidString,in: test)
                         }
                     }
                 }
@@ -215,10 +237,10 @@ struct Dashboard: View {
                 )
             }
             .onAppear {
-                Timer.animateNumber(number: $number, busy: $busy, start: 0, end: 84, duration: 1.5)
-                withAnimation(.easeInOut(duration: 1.0)) {
-                    progress = 0.84
-                }
+                Timer.animateNumber(number: $number, busy: $busy, start: 0, end: Int(progress) * 100, duration: 1.5)
+//                withAnimation(.easeInOut(duration: 1.0)) {
+//                    progress = 0.84
+//                }
             }
         }
     }

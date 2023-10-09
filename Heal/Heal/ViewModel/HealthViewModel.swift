@@ -34,6 +34,8 @@ class HealthViewModel: ObservableObject {
     
     @Published var userHealthProfile: UserHealthProfile?
     @Published var activityHealthDataArray: [UserHealthActivity] = [UserHealthActivity]()
+    @Published var mainItemView: UserHealthActivity = UserHealthActivity.MOCK_UserHealthActivity
+    @Published var mainItemProgress: CGFloat = 0.0
     var cancellables = Set<AnyCancellable>()
     var authViewModel: AuthViewModel
     var healthStore: HKHealthStore!
@@ -88,7 +90,7 @@ class HealthViewModel: ObservableObject {
         getUserHeight()
         getUserWeight()
         getUserStepCount(for: timeFrame)
-        getUserHeartRate(for: timeFrame)
+//        getUserHeartRate(for: timeFrame)
         getUserActiveEnergyBurned(for: timeFrame)
         getUserSleepAnalysis(for: timeFrame)
         getDistanceWalkingRunning(for: timeFrame)
@@ -148,7 +150,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let stepCount = stepCount {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",stepCount), message: "steps", image: ImagesController.stepCount.imageName(isGirl: self.isUserGirl), unit: "steps", name: "Steps Count"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",stepCount), message: "steps", image: ImagesController.stepCount.imageName(isGirl: self.isUserGirl), unit: "steps", name: "Steps Count", userHealthType: .stepCount))
 //                    self.stepCount = stepCount
                 }
             }
@@ -162,7 +164,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let avgHeartRate = avgHeartRate {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f", avgHeartRate), message: "Take Car of you Heart", image: ImagesController.heartRate.imageName(isGirl: self.isUserGirl), unit: "rpm", name: "Heart Rate"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f", avgHeartRate), message: "Take Car of you Heart", image: ImagesController.heartRate.imageName(isGirl: self.isUserGirl), unit: "rpm", name: "Heart Rate", userHealthType: .heartRate))
 //                    self.heartRate = avgHeartRate
                 }
             }
@@ -176,7 +178,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let activeEnergyBurned = activeEnergyBurned {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",activeEnergyBurned), message: "Yeaaaah Lets Go", image: ImagesController.activeEnergyBurned.imageName(isGirl: self.isUserGirl), unit: "kcal", name: "Active Energy"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",activeEnergyBurned), message: "Yeaaaah Lets Go", image: ImagesController.activeEnergyBurned.imageName(isGirl: self.isUserGirl), unit: "kcal", name: "Active Energy", userHealthType: .activeEnergyBurned))
                 }
             }
         }
@@ -189,7 +191,7 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let sleepAnalysis = sleepAnalysis {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",sleepAnalysis), message: "Go To Sleep", image: ImagesController.sleep.imageName(isGirl: self.isUserGirl), unit: "hours", name: "Sleep Analysis"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",sleepAnalysis), message: "Go To Sleep", image: ImagesController.sleep.imageName(isGirl: self.isUserGirl), unit: "hours", name: "Sleep Analysis", userHealthType: .sleepAnalysis))
                 }
             }
         }
@@ -202,19 +204,79 @@ class HealthViewModel: ObservableObject {
                     return
                 }
                 if let distanceWalkingRunning = distanceWalkingRunning {
-                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",distanceWalkingRunning), message: "Lets Travel", image: ImagesController.distanceWalkingRunning.imageName(isGirl: self.isUserGirl), unit: "km", name: "Distance Covered"))
+                    self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.1f",distanceWalkingRunning), message: "Lets Travel", image: ImagesController.distanceWalkingRunning.imageName(isGirl: self.isUserGirl), unit: "km", name: "Distance Covered", userHealthType: .distanceWalkingRunning))
                 }
             }
         }
     }
     func updateHealthData(for timeFrame: TimeFrame) {
-           DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
                withAnimation(.easeInOut(duration: 0.5)) {
-                   self.initialize(timeFrame: timeFrame)
+                   activityHealthDataArray.removeAll()
+                   initialize(timeFrame: timeFrame)
+                   mainItemView = self.activityHealthDataArray.first ?? UserHealthActivity.MOCK_UserHealthActivity
+                   $activityHealthDataArray.sink { userHealthArray in
+                       self.mainItemView = userHealthArray.first ?? UserHealthActivity.MOCK_UserHealthActivity
+                       self.mainItemProgress = self.checkTheProgress(time: timeFrame, userHealthActivity: self.mainItemView)
+                   }.store(in: &cancellables)
+//                   print("Here")
+//                   print(self.checkTheProgress(time: timeFrame, userHealthActivity: self.mainItemView))
                }
-               self.activityHealthDataArray.removeAll()
            }
     }
 
+}
+//Chanllengies
+extension HealthViewModel {
+    func checkTheProgress(time: TimeFrame, userHealthActivity: UserHealthActivity) -> Double {
+        switch userHealthActivity.type {
+        case .activeEnergyBurned:
+            return activeEnergyBurnedChallengies(time: time, userHealthAcitivityData: userHealthActivity.data)
+        case .distanceWalkingRunning:
+            return distanceWalkingRunningChallengies(time: time, userHealthAcitivityData: userHealthActivity.data)
+        case .heartRate:
+            return 0.0
+        case .sleepAnalysis:
+            return sleepAnalysisChallengies(time: time, userHealthAcitivityData: userHealthActivity.data)
+        case .stepCount:
+            return stepCountChallengies(time: time, userHealthAcitivityData: userHealthActivity.data)
+        }
+    }
+    private func stepCountChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        if time == .today {
+            return (Double(userHealthAcitivityData) ?? 500) / 1000
+        } else if time == .weekly {
+            return (Double(userHealthAcitivityData) ?? 500) / 10000
+        } else {
+            return (Double(userHealthAcitivityData) ?? 500) / 50000
+        }
+    }
+    private func sleepAnalysisChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        if time == .today {
+            return (Double(userHealthAcitivityData) ?? 8) / 8
+        } else if time == .weekly {
+            return (Double(userHealthAcitivityData) ?? 8) / 56
+        } else {
+            return (Double(userHealthAcitivityData) ?? 8) / 224
+        }
+    }
+    private func distanceWalkingRunningChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        if time == .today {
+            return (Double(userHealthAcitivityData) ?? 1) / 2.3
+        } else if time == .weekly {
+            return (Double(userHealthAcitivityData) ?? 1) / 16
+        } else {
+            return (Double(userHealthAcitivityData) ?? 1) / 65
+        }
+    }
+    private func activeEnergyBurnedChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        if time == .today {
+            return (Double(userHealthAcitivityData) ?? 150) / 350
+        } else if time == .weekly {
+            return (Double(userHealthAcitivityData) ?? 150) / 2500
+        } else {
+            return (Double(userHealthAcitivityData) ?? 150) / 11000
+        }
+    }
 }
 extension HKHealthStore: ObservableObject{}

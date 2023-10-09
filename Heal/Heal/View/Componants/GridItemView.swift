@@ -6,52 +6,66 @@
 //
 
 import SwiftUI
-
 struct GridItemView: View {
-    var image: String = "burningCalories"
-    var data: String = "0.0"
-    var message: String = "No Data"
-    var unit: String = "N/A"
+//    var test: Namespace.ID
+    var userHealthActivity = UserHealthActivity.MOCK_UserHealthActivity
+//    @State private var yOffset: CGFloat = 0
+    
     var body: some View {
-        ZStack{
+        ZStack {
             GeometryReader { geometry in
                 Color.clear
-                ZStack(alignment:.leading){
-                    Image(image)
+                ZStack(alignment:.leading) {
+                    Image(userHealthActivity.image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .clipped()
                         .padding(.top, 40)
                         .padding(.leading, 65)
-                    VStack(alignment: .leading){
+//                        .matchedGeometryEffect(id:"image"+id.uuidString,in:test)
+                    
+                    VStack(alignment: .leading) {
                         HStack(spacing: 2) {
-                            Text(data)
+                            Text(userHealthActivity.data)
                                 .font(
                                     Font.custom("Lato", size: 25)
                                         .weight(.bold)
                                 )
                                 .foregroundColor(.primary)
-                            Text(unit)
+//                                .matchedGeometryEffect(id:"data"+id.uuidString,in:test)
+//                                .offset(y: -yOffset)
+                            
+                            Text(userHealthActivity.unit)
                                 .font(
                                     Font.custom("Lato", size: 12)
                                         .weight(.bold)
                                 )
                                 .foregroundColor(.gray)
+//                                .matchedGeometryEffect(id:"unit"+id.uuidString,in:test)
+//                                .offset(y: -yOffset) // Offset the unit upward
                         }
-                        Text(message)
+                        
+                        Text(userHealthActivity.message)
                             .font(
                                 Font.custom("Lato", size: 10)
                                     .weight(.light)
                             )
                             .foregroundColor(.primary)
                             .opacity(0.6)
+//                            .matchedGeometryEffect(id:"message"+id.uuidString,in:test)
+//                            .offset(y: -yOffset) // Offset the message upward
+                        
                         Spacer()
                     }
                     .padding(.top, 38)
                     .padding(.leading, 14)
-                   
                 }
+//                .offset(y: yOffset) // Offset the entire content upward
+//                .onAppear {
+//                    // Set an initial yOffset to move content down
+//                    yOffset = geometry.size.height
+//                }
             }
             .frame(width: 177, height: 167)
             .background(
@@ -70,10 +84,16 @@ struct GridItemView: View {
                     .inset(by: 0.5)
                     .stroke(.white.opacity(0.3), lineWidth: 1)
             )
+//            .onAppear {
+//                // Animate the yOffset to bring content upward
+//                withAnimation(.easeInOut(duration: 0.5)) {
+//                    yOffset = 0
+//                }
+//            }
         }
     }
 }
 
-#Preview {
-    GridItemView()
-}
+//#Preview {
+//    GridItemView()
+//}
