@@ -10,9 +10,9 @@ import HealthKit
 
 import HealthKit
 
-enum TimeFrame: String {
+enum TimeFrame: String, CaseIterable {
     case today
-    case daily
+//    case daily
     case weekly
     case monthly
 }
@@ -276,8 +276,8 @@ extension HealthKitManager {
         switch timeFrame {
         case .today:
             return getTodayPredicate()
-        case .daily:
-            return get24hPredicate()
+//        case .daily:
+//            return get24hPredicate()
         case .weekly:
             return getWeeklyPredicate()
         case .monthly:

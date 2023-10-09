@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB1003B52AD46EF60031B8D0 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1003B42AD46EF60031B8D0 /* Challenge.swift */; };
 		AB1059B62AB8BF260086FF97 /* HealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059B52AB8BF260086FF97 /* HealApp.swift */; };
 		AB1059B82AB8BF260086FF97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059B72AB8BF260086FF97 /* MainView.swift */; };
 		AB1059BA2AB8BF270086FF97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB1059B92AB8BF270086FF97 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 		AB1059C72AB8BF270086FF97 /* HealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059C62AB8BF270086FF97 /* HealTests.swift */; };
 		AB1059D12AB8BF270086FF97 /* HealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D02AB8BF270086FF97 /* HealUITests.swift */; };
 		AB1059D32AB8BF270086FF97 /* HealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */; };
+		AB159C952AD4462900E42722 /* LinearProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB159C942AD4462900E42722 /* LinearProgressView.swift */; };
 		AB2749AD2ACDCA6400EDE8AC /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2749AC2ACDCA6400EDE8AC /* UserHealthProfile.swift */; };
 		AB2E838F2ACEE2F500A9FCFF /* UserHealthActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E838E2ACEE2F500A9FCFF /* UserHealthActivity.swift */; };
 		AB2E83912ACF036800A9FCFF /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E83902ACF036800A9FCFF /* LoadingScreen.swift */; };
@@ -66,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB1003B42AD46EF60031B8D0 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		AB1059B22AB8BF260086FF97 /* Heal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1059B52AB8BF260086FF97 /* HealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealApp.swift; sourceTree = "<group>"; };
 		AB1059B72AB8BF260086FF97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 		AB1059D02AB8BF270086FF97 /* HealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITests.swift; sourceTree = "<group>"; };
 		AB1059D22AB8BF270086FF97 /* HealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB1059DF2AB8CBBD0086FF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AB159C942AD4462900E42722 /* LinearProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressView.swift; sourceTree = "<group>"; };
 		AB2749AC2ACDCA6400EDE8AC /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
 		AB2E838E2ACEE2F500A9FCFF /* UserHealthActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthActivity.swift; sourceTree = "<group>"; };
 		AB2E83902ACF036800A9FCFF /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 				AB7951002ABB28C7004E6E71 /* User.swift */,
 				AB2749AC2ACDCA6400EDE8AC /* UserHealthProfile.swift */,
 				AB2E838E2ACEE2F500A9FCFF /* UserHealthActivity.swift */,
+				AB1003B42AD46EF60031B8D0 /* Challenge.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				AB4E1E992ABF997D00380AFD /* GridItemView.swift */,
 				ABCAD64D2AC73D0B0046A7E1 /* CustomFostkBackground.swift */,
 				AB7D541D2AC84DF000046709 /* CircularProgressView.swift */,
+				AB159C942AD4462900E42722 /* LinearProgressView.swift */,
 			);
 			path = Componants;
 			sourceTree = "<group>";
@@ -426,11 +432,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB2E83912ACF036800A9FCFF /* LoadingScreen.swift in Sources */,
+				AB1003B52AD46EF60031B8D0 /* Challenge.swift in Sources */,
 				ABCAD64E2AC73D0B0046A7E1 /* CustomFostkBackground.swift in Sources */,
 				ABCE3E7F2AC9FC6F00CCAE78 /* HealthViewModel.swift in Sources */,
 				ABAEB81C2AB8F72700696578 /* SecureTextField.swift in Sources */,
 				AB7D541E2AC84DF000046709 /* CircularProgressView.swift in Sources */,
 				ABBFD04A2AB8F1C0002000B8 /* CustomTextField.swift in Sources */,
+				AB159C952AD4462900E42722 /* LinearProgressView.swift in Sources */,
 				AB2749AD2ACDCA6400EDE8AC /* UserHealthProfile.swift in Sources */,
 				AB4E1E962ABF6AE200380AFD /* SideMenu.swift in Sources */,
 				ABCAD6522AC75A050046A7E1 /* Dashboard.swift in Sources */,

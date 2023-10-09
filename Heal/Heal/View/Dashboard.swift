@@ -143,8 +143,8 @@ struct ChoicesFilter:View {
             return 0
         case .monthly:
             return offsetValue
-        default:
-            return 0
+//        default:
+//            return 0
         }
     }
 }

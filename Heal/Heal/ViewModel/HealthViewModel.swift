@@ -248,41 +248,41 @@ extension HealthViewModel {
     private func stepCountChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
         let value = Double(userHealthAcitivityData) ?? 500
         if time == .today {
-            return mapValue(value: value, fromRange: 0.0...1000.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.stepCountChallenge.todayRange, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return mapValue(value: value, fromRange: 0.0...10000.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.stepCountChallenge.weeklyRange, toRange: 0.0...100.0)
         } else {
-            return mapValue(value: value, fromRange: 0.0...50000.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.stepCountChallenge.monthlyRange, toRange: 0.0...100.0)
         }
     }
     private func sleepAnalysisChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
         let value = Double(userHealthAcitivityData) ?? 8
         if time == .today {
-            return mapValue(value: value, fromRange: 0.0...8.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.sleepAnalysisChallenge.todayRange, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return mapValue(value: value, fromRange: 0.0...56.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.sleepAnalysisChallenge.weeklyRange, toRange: 0.0...100.0)
         } else {
-            return mapValue(value: value, fromRange: 0.0...224.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.sleepAnalysisChallenge.monthlyRange, toRange: 0.0...100.0)
         }
     }
     private func distanceWalkingRunningChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
         let value = Double(userHealthAcitivityData) ?? 1
         if time == .today {
-            return mapValue(value: value, fromRange: 0.0...2.3, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.distanceWalkingRunningChallenge.todayRange, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return mapValue(value: value, fromRange: 0.0...16.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.distanceWalkingRunningChallenge.weeklyRange, toRange: 0.0...100.0)
         } else {
-            return mapValue(value: value, fromRange: 0.0...65, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.distanceWalkingRunningChallenge.monthlyRange, toRange: 0.0...100.0)
         }
     }
     private func activeEnergyBurnedChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
         let value = Double(userHealthAcitivityData) ?? 150
         if time == .today {
-            return mapValue(value: value, fromRange: 0.0...350.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.activeEnergyBurnedChallenge.todayRange, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return mapValue(value: value, fromRange: 0.0...2500.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.activeEnergyBurnedChallenge.weeklyRange, toRange: 0.0...100.0)
         } else {
-            return mapValue(value: value, fromRange: 0.0...11000.0, toRange: 0.0...100.0)
+            return mapValue(value: value, fromRange: ChallengeManager.shared.activeEnergyBurnedChallenge.monthlyRange, toRange: 0.0...100.0)
         }
     }
 }
