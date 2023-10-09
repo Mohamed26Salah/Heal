@@ -33,7 +33,7 @@ struct Dashboard: View {
                             .tint(Color.mint)
                             .scaleEffect(3)
                     } else {
-                        MainDataView(oustideGeomtry: geomtry, cardObject: healthViewModel.mainItemView, progress: $healthViewModel.mainItemProgress, selectedChoice: $selectedChoice)
+                        MainDataView(oustideGeomtry: geomtry, progress: $healthViewModel.mainItemProgress, selectedChoice: $selectedChoice)
                             .onAppear{
                                 healthViewModel.mainItemView = healthViewModel.activityHealthDataArray.first ?? UserHealthActivity.MOCK_UserHealthActivity
                                 healthViewModel.mainItemProgress = healthViewModel.checkTheProgress(time: selectedChoice, userHealthActivity: healthViewModel.mainItemView)
@@ -59,193 +59,193 @@ struct Dashboard: View {
         }
         .onChange(of: selectedChoice, perform: { newTimeFrame in
             healthViewModel.updateHealthData(for: newTimeFrame)
-//            print(healthViewModel.mainItemProgress)
         })
+        .alert("Error", isPresented: $healthViewModel.showAlert, presenting: healthViewModel.error) { details in
+            Button("OK") {
+                healthViewModel.showAlert.toggle()
+            }
+        } message: { details in
+            Text(details.error)
+        }
     }
 //    var testView: some View {
 //        Text("Sakah")
 //    }
-    struct ChoicesFilter:View {
-        var oustideGeomtry: GeometryProxy
-        let choicesArray: [TimeFrame] = [.today, .weekly, .monthly]
-        @State private var ballOffSetLocation: CGFloat = 0
-        @State private var orientation = UIDevice.current.orientation
-        @Binding var selectedChoice: TimeFrame
-        var body: some View {
-            ZStack{
-                Image("Ellipse 5")
-                    .offset(x: ballOffSetLocation, y: 0)
-                HStack(spacing: oustideGeomtry.size.width / 3 - 110){
-                    ForEach(choicesArray, id: \.self) { choice in
-                        Button(action: {
-                            withAnimation {
-                                self.selectedChoice = choice
-                                self.ballOffSetLocation = calculateOffset(for: selectedChoice, totalWidth: oustideGeomtry.size.width)
-                            }
-                        }) {
-                            ZStack{
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 108, height: 50)
-                                    .background(
-                                        LinearGradient(
-                                            stops: [
-                                                Gradient.Stop(color: Color(red: 0.32, green: 0.91, blue: 0.95).opacity(choice == selectedChoice ? 0.32 : 0.22), location: 0.00),
-                                                Gradient.Stop(color: Color(red: 0.19, green: 0.73, blue: 0.76).opacity(choice == selectedChoice ? 0.24 : 0.14), location: 1.00),
-                                            ],
-                                            startPoint: UnitPoint(x: 0.06, y: -0.02),
-                                            endPoint: UnitPoint(x: 0.84, y: 0.97)
-                                        )
+   
+}
+struct ChoicesFilter:View {
+    var oustideGeomtry: GeometryProxy
+    let choicesArray: [TimeFrame] = [.today, .weekly, .monthly]
+    @State private var ballOffSetLocation: CGFloat = 0
+    @State private var orientation = UIDevice.current.orientation
+    @Binding var selectedChoice: TimeFrame
+    var body: some View {
+        ZStack{
+            Image("Ellipse 5")
+                .offset(x: ballOffSetLocation, y: 0)
+            HStack(spacing: oustideGeomtry.size.width / 3 - 110){
+                ForEach(choicesArray, id: \.self) { choice in
+                    Button(action: {
+                        withAnimation {
+                            self.selectedChoice = choice
+                            self.ballOffSetLocation = calculateOffset(for: selectedChoice, totalWidth: oustideGeomtry.size.width)
+                        }
+                    }) {
+                        ZStack{
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 108, height: 50)
+                                .background(
+                                    LinearGradient(
+                                        stops: [
+                                            Gradient.Stop(color: Color(red: 0.32, green: 0.91, blue: 0.95).opacity(choice == selectedChoice ? 0.32 : 0.22), location: 0.00),
+                                            Gradient.Stop(color: Color(red: 0.19, green: 0.73, blue: 0.76).opacity(choice == selectedChoice ? 0.24 : 0.14), location: 1.00),
+                                        ],
+                                        startPoint: UnitPoint(x: 0.06, y: -0.02),
+                                        endPoint: UnitPoint(x: 0.84, y: 0.97)
                                     )
-                                    .cornerRadius(8)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .inset(by: 0.5)
-                                            .stroke(.white.opacity(0.3), lineWidth: 1)
-                                    )
-                                    .background(.ultraThinMaterial)
-                                
-                                Text(choice.rawValue)
-                                    .font(
-                                        Font.custom("Lato", size: 21)
-                                            .weight(.medium)
-                                    )
-                                    .foregroundColor(.primary)
-                            }
+                                )
+                                .cornerRadius(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .inset(by: 0.5)
+                                        .stroke(.white.opacity(0.3), lineWidth: 1)
+                                )
+                                .background(.ultraThinMaterial)
+                            
+                            Text(choice.rawValue)
+                                .font(
+                                    Font.custom("Lato", size: 21)
+                                        .weight(.medium)
+                                )
+                                .foregroundColor(.primary)
                         }
                     }
                 }
             }
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                self.orientation = UIDevice.current.orientation
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    let screenWidth = oustideGeomtry.size.width
-                    withAnimation {
-                        self.ballOffSetLocation = calculateOffset(for: selectedChoice, totalWidth: screenWidth)
-                    }
-                }
-            }
         }
-        private func calculateOffset(for choice: TimeFrame, totalWidth: CGFloat) -> CGFloat {
-            let offsetValue = totalWidth / CGFloat(choicesArray.count) // Calculate offset based on total width and number of choices
-            switch choice {
-            case .today:
-                return -offsetValue
-            case .weekly:
-                return 0
-            case .monthly:
-                return offsetValue
-            default:
-                return 0
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            self.orientation = UIDevice.current.orientation
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                let screenWidth = oustideGeomtry.size.width
+                withAnimation {
+                    self.ballOffSetLocation = calculateOffset(for: selectedChoice, totalWidth: screenWidth)
+                }
             }
         }
     }
-    struct MainDataView: View {
-        var oustideGeomtry: GeometryProxy
-//        var test: Namespace.ID
-        var cardObject: UserHealthActivity
-        @State private var number: Int = 0
-        @State private var busy: Bool = false
-        @Binding var progress: CGFloat
-        @Binding var selectedChoice: TimeFrame
-        var body: some View {
-            ZStack{
-                GeometryReader { geometry in
-                    Color.clear
-                    ZStack {
-                        VStack{
-                            Text(cardObject.name)
-                                .font(
-                                    Font.custom("Lato", size: 25)
-                                        .weight(.bold)
-                                )
-                                .foregroundColor(.primary)
-                                .padding(.top, 11)
-                            HStack(spacing: 5){
-                                ZStack{
-                                    CircularProgressView(progress: progress)
-                                        .frame(width: 150,height: 150)
-                                    VStack{
-                                        Text("Quality")
-                                            .font(
-                                                Font.custom("Lato", size: 14)
-                                                    .weight(.light)
-                                            )
-                                            .foregroundColor(.primary)
-                                        Text("\(progress) %")
-                                            .font(
-                                                Font.custom("Lato", size: 25)
-                                                    .weight(.bold)
-                                            )
-                                            .foregroundColor(.primary)
-                                    }
-                                }
-                                .padding(.leading, 20)
-                                Spacer()
-                                VStack{
-                                    HStack(spacing: 2){
-                                        Text(cardObject.data)
-                                            .font(
-                                                Font.custom("Lato", size: 25)
-                                                    .weight(.bold)
-                                            )
-                                            .foregroundColor(.primary)
-//                                            .matchedGeometryEffect(id:"data"+cardObject.id.uuidString,in:test)
-                                        Text(cardObject.unit)
-                                            .font(
-                                                Font.custom("Lato", size: 12)
-                                                    .weight(.bold)
-                                            )
-                                            .foregroundColor(.gray)
-//                                            .matchedGeometryEffect(id:"unit"+cardObject.id.uuidString,in:test)
-                                    }
-                                    Text(cardObject.message)
-                                        .font(
-                                            Font.custom("Lato", size: 16)
-                                                .weight(.light)
-                                        )
-                                        .foregroundColor(.primary)
-//                                        .matchedGeometryEffect(id:"message"+cardObject.id.uuidString,in:test)
-                                }
-                                .padding(.trailing, 45)
-                            }
-                            Image(cardObject.image)
-                                .resizable()
-                                .frame(width: 200, height: 312)
-                                .padding(.leading, 90)
-                                .padding(.top, -50)
-//                                .matchedGeometryEffect(id:"image"+cardObject.id.uuidString,in: test)
-                        }
-                    }
-                }
-                .frame(width: oustideGeomtry.size.width - 30, height: 307)
-                .background(
-                    LinearGradient(
-                        stops: [
-                            Gradient.Stop(color: Color(red: 0.32, green: 0.91, blue: 0.95).opacity(0.32), location: 0.00),
-                            Gradient.Stop(color: Color(red: 0.19, green: 0.73, blue: 0.76).opacity(0.24), location: 1.00),
-                        ],
-                        startPoint: UnitPoint(x: 0.06, y: -0.02),
-                        endPoint: UnitPoint(x: 0.84, y: 0.97)
-                    )
-                )
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .inset(by: 0.5)
-                        .stroke(.white.opacity(0.3), lineWidth: 1)
-                )
-            }
-            .onAppear {
-                Timer.animateNumber(number: $number, busy: $busy, start: 0, end: Int(progress) * 100, duration: 1.5)
-//                withAnimation(.easeInOut(duration: 1.0)) {
-//                    progress = 0.84
-//                }
-            }
+    private func calculateOffset(for choice: TimeFrame, totalWidth: CGFloat) -> CGFloat {
+        let offsetValue = totalWidth / CGFloat(choicesArray.count) // Calculate offset based on total width and number of choices
+        switch choice {
+        case .today:
+            return -offsetValue
+        case .weekly:
+            return 0
+        case .monthly:
+            return offsetValue
+        default:
+            return 0
         }
     }
 }
-
+struct MainDataView: View {
+    var oustideGeomtry: GeometryProxy
+//        var test: Namespace.ID
+//    var cardObject: UserHealthActivity
+    @State private var number: Int = 0
+    @State private var busy: Bool = false
+    @Binding var progress: CGFloat
+    @Binding var selectedChoice: TimeFrame
+    @EnvironmentObject var healthViewModel: HealthViewModel
+    var body: some View {
+        ZStack{
+            GeometryReader { geometry in
+                Color.clear
+                ZStack {
+                    VStack{
+                        Text(healthViewModel.mainItemView.name)
+                            .font(
+                                Font.custom("Lato", size: 25)
+                                    .weight(.bold)
+                            )
+                            .foregroundColor(.primary)
+                            .padding(.top, 11)
+                        HStack(spacing: 5){
+                            ZStack{
+                                CircularProgressView(progress: healthViewModel.mapValue(value: progress, fromRange: 0.0...100.0, toRange: 0.0...1.0))
+                                    .frame(width: 150,height: 150)
+                                VStack{
+                                    Text("Quality")
+                                        .font(
+                                            Font.custom("Lato", size: 14)
+                                                .weight(.light)
+                                        )
+                                        .foregroundColor(.primary)
+                                    Text(String(format: "%.2f", progress) + "%")
+                                        .font(
+                                            Font.custom("Lato", size: 25)
+                                                .weight(.bold)
+                                        )
+                                        .foregroundColor(.primary)
+                                }
+                            }
+                            .padding(.leading, 20)
+                            Spacer()
+                            VStack{
+                                HStack(spacing: 2){
+                                    Text(healthViewModel.mainItemView.data)
+                                        .font(
+                                            Font.custom("Lato", size: 25)
+                                                .weight(.bold)
+                                        )
+                                        .foregroundColor(.primary)
+                                    Text(healthViewModel.mainItemView.unit)
+                                        .font(
+                                            Font.custom("Lato", size: 12)
+                                                .weight(.bold)
+                                        )
+                                        .foregroundColor(.gray)
+                                }
+                                Text(healthViewModel.mainItemView.message)
+                                    .font(
+                                        Font.custom("Lato", size: 16)
+                                            .weight(.light)
+                                    )
+                                    .foregroundColor(.primary)
+                            }
+                            .padding(.trailing, 45)
+                        }
+                        Image(healthViewModel.mainItemView.image)
+                            .resizable()
+                            .frame(width: 200, height: 312)
+                            .padding(.leading, 90)
+                            .padding(.top, -50)
+                    }
+                }
+            }
+            .frame(width: oustideGeomtry.size.width - 30, height: 307)
+            .background(
+                LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0.32, green: 0.91, blue: 0.95).opacity(0.32), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.19, green: 0.73, blue: 0.76).opacity(0.24), location: 1.00),
+                    ],
+                    startPoint: UnitPoint(x: 0.06, y: -0.02),
+                    endPoint: UnitPoint(x: 0.84, y: 0.97)
+                )
+            )
+            .cornerRadius(20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .inset(by: 0.5)
+                    .stroke(.white.opacity(0.3), lineWidth: 1)
+            )
+        }
+        .onAppear {
+            Timer.animateNumber(number: $number, busy: $busy, start: 0, end: Int(progress), duration: 1.5)
+        }
+    }
+}
 #Preview {
     Dashboard()
 }

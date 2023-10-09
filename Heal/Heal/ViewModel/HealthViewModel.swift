@@ -36,6 +36,8 @@ class HealthViewModel: ObservableObject {
     @Published var activityHealthDataArray: [UserHealthActivity] = [UserHealthActivity]()
     @Published var mainItemView: UserHealthActivity = UserHealthActivity.MOCK_UserHealthActivity
     @Published var mainItemProgress: CGFloat = 0.0
+    @Published var error: ErrorDetails?
+    @Published var showAlert: Bool = false
     var cancellables = Set<AnyCancellable>()
     var authViewModel: AuthViewModel
     var healthStore: HKHealthStore!
@@ -146,12 +148,12 @@ class HealthViewModel: ObservableObject {
         healthKitManager.getStepCount(forTimeFrame: timeFrame) { stepCount, error in
             DispatchQueue.main.async {
                 guard error == nil else {
-                    print(error)
+                    self.showAlert.toggle()
+                    self.error = ErrorDetails(name: "Error", error: error?.localizedDescription ?? "Something Went Wrong")
                     return
                 }
                 if let stepCount = stepCount {
                     self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f",stepCount), message: "steps", image: ImagesController.stepCount.imageName(isGirl: self.isUserGirl), unit: "steps", name: "Steps Count", userHealthType: .stepCount))
-//                    self.stepCount = stepCount
                 }
             }
         }
@@ -160,12 +162,12 @@ class HealthViewModel: ObservableObject {
         healthKitManager.getAverageHeartRate(forTimeFrame: timeFrame) { avgHeartRate, error in
             DispatchQueue.main.async {
                 guard error == nil else {
-                    print(error)
+                    self.showAlert.toggle()
+                    self.error = ErrorDetails(name: "Error", error: error?.localizedDescription ?? "Something Went Wrong")
                     return
                 }
                 if let avgHeartRate = avgHeartRate {
                     self.activityHealthDataArray.append(UserHealthActivity(data: String(format: "%.0f", avgHeartRate), message: "Take Car of you Heart", image: ImagesController.heartRate.imageName(isGirl: self.isUserGirl), unit: "rpm", name: "Heart Rate", userHealthType: .heartRate))
-//                    self.heartRate = avgHeartRate
                 }
             }
         }
@@ -174,7 +176,8 @@ class HealthViewModel: ObservableObject {
         healthKitManager.getActiveEnergyBurned(forTimeFrame: timeFrame) { activeEnergyBurned, error in
             DispatchQueue.main.async {
                 guard error == nil else {
-                    print(error)
+                    self.showAlert.toggle()
+                    self.error = ErrorDetails(name: "Error", error: error?.localizedDescription ?? "Something Went Wrong")
                     return
                 }
                 if let activeEnergyBurned = activeEnergyBurned {
@@ -187,7 +190,8 @@ class HealthViewModel: ObservableObject {
         healthKitManager.getSleepAnalysis(forTimeFrame: timeFrame) { sleepAnalysis, error in
             DispatchQueue.main.async {
                 guard error == nil else {
-                    print(error)
+                    self.showAlert.toggle()
+                    self.error = ErrorDetails(name: "Error", error: error?.localizedDescription ?? "Something Went Wrong")
                     return
                 }
                 if let sleepAnalysis = sleepAnalysis {
@@ -200,7 +204,8 @@ class HealthViewModel: ObservableObject {
         healthKitManager.getDistanceWalkingRunning(forTimeFrame: timeFrame) { distanceWalkingRunning, error in
             DispatchQueue.main.async {
                 guard error == nil else {
-                    print(error)
+                    self.showAlert.toggle()
+                    self.error = ErrorDetails(name: "Error", error: error?.localizedDescription ?? "Something Went Wrong")
                     return
                 }
                 if let distanceWalkingRunning = distanceWalkingRunning {
@@ -219,14 +224,12 @@ class HealthViewModel: ObservableObject {
                        self.mainItemView = userHealthArray.first ?? UserHealthActivity.MOCK_UserHealthActivity
                        self.mainItemProgress = self.checkTheProgress(time: timeFrame, userHealthActivity: self.mainItemView)
                    }.store(in: &cancellables)
-//                   print("Here")
-//                   print(self.checkTheProgress(time: timeFrame, userHealthActivity: self.mainItemView))
                }
            }
     }
 
 }
-//Chanllengies
+//MARK: - Challengies
 extension HealthViewModel {
     func checkTheProgress(time: TimeFrame, userHealthActivity: UserHealthActivity) -> Double {
         switch userHealthActivity.type {
@@ -243,40 +246,52 @@ extension HealthViewModel {
         }
     }
     private func stepCountChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        let value = Double(userHealthAcitivityData) ?? 500
         if time == .today {
-            return (Double(userHealthAcitivityData) ?? 500) / 1000
+            return mapValue(value: value, fromRange: 0.0...1000.0, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return (Double(userHealthAcitivityData) ?? 500) / 10000
+            return mapValue(value: value, fromRange: 0.0...10000.0, toRange: 0.0...100.0)
         } else {
-            return (Double(userHealthAcitivityData) ?? 500) / 50000
+            return mapValue(value: value, fromRange: 0.0...50000.0, toRange: 0.0...100.0)
         }
     }
     private func sleepAnalysisChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        let value = Double(userHealthAcitivityData) ?? 8
         if time == .today {
-            return (Double(userHealthAcitivityData) ?? 8) / 8
+            return mapValue(value: value, fromRange: 0.0...8.0, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return (Double(userHealthAcitivityData) ?? 8) / 56
+            return mapValue(value: value, fromRange: 0.0...56.0, toRange: 0.0...100.0)
         } else {
-            return (Double(userHealthAcitivityData) ?? 8) / 224
+            return mapValue(value: value, fromRange: 0.0...224.0, toRange: 0.0...100.0)
         }
     }
     private func distanceWalkingRunningChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        let value = Double(userHealthAcitivityData) ?? 1
         if time == .today {
-            return (Double(userHealthAcitivityData) ?? 1) / 2.3
+            return mapValue(value: value, fromRange: 0.0...2.3, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return (Double(userHealthAcitivityData) ?? 1) / 16
+            return mapValue(value: value, fromRange: 0.0...16.0, toRange: 0.0...100.0)
         } else {
-            return (Double(userHealthAcitivityData) ?? 1) / 65
+            return mapValue(value: value, fromRange: 0.0...65, toRange: 0.0...100.0)
         }
     }
     private func activeEnergyBurnedChallengies(time: TimeFrame, userHealthAcitivityData: String) -> Double {
+        let value = Double(userHealthAcitivityData) ?? 150
         if time == .today {
-            return (Double(userHealthAcitivityData) ?? 150) / 350
+            return mapValue(value: value, fromRange: 0.0...350.0, toRange: 0.0...100.0)
         } else if time == .weekly {
-            return (Double(userHealthAcitivityData) ?? 150) / 2500
+            return mapValue(value: value, fromRange: 0.0...2500.0, toRange: 0.0...100.0)
         } else {
-            return (Double(userHealthAcitivityData) ?? 150) / 11000
+            return mapValue(value: value, fromRange: 0.0...11000.0, toRange: 0.0...100.0)
         }
+    }
+}
+//MARK: - Helper Function
+extension HealthViewModel {
+    func mapValue(value: Double, fromRange: ClosedRange<Double>, toRange: ClosedRange<Double>) -> Double {
+        let normalizedValue = (value - fromRange.lowerBound) / (fromRange.upperBound - fromRange.lowerBound)
+        let mappedValue = toRange.lowerBound + normalizedValue * (toRange.upperBound - toRange.lowerBound)
+        return min(toRange.upperBound, max(toRange.lowerBound, mappedValue))
     }
 }
 extension HKHealthStore: ObservableObject{}
