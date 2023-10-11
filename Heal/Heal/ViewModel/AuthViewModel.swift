@@ -45,7 +45,6 @@ class AuthViewModel: ObservableObject {
             self.showLoading = false
             self.showAlert.toggle()
             self.error = ErrorDetails(name: "Error", error: error.localizedDescription)
-//            print("DEBUG: Failed to sign In the user with error \(error.localizedDescription)")
         }
     }
     func createUser(withEmail email: String, password: String, fullName: String, gender: Gender) async throws {
@@ -62,7 +61,6 @@ class AuthViewModel: ObservableObject {
             self.showLoading = false
             self.showAlert.toggle()
             self.error = ErrorDetails(name: "Error", error: error.localizedDescription)
-//            print("DEBUG: Failed to create user with error \(error.localizedDescription)")
         }
     }
     func signOut() {
@@ -73,7 +71,6 @@ class AuthViewModel: ObservableObject {
         } catch {
             self.showAlert.toggle()
             self.error = ErrorDetails(name: "Error", error: error.localizedDescription)
-//            print("DEBUG: Failed to sign out the user with error \(error.localizedDescription)")
         }
     }
     func deleteAccount() {

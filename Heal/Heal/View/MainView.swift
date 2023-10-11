@@ -14,6 +14,8 @@ struct MainView: View {
     @State private var showSideMenu = false
     @State private var buttonFrame: CGRect?
     @State private var isNotificationViewVisible = false
+    @State private var isLogoutAlertPresented = false
+    @State private var previousTab: Tab = .DashBoard
     var body: some View {
         GeometryReader { geomtry in
             ZStack(alignment: .topLeading) {
@@ -35,15 +37,6 @@ struct MainView: View {
                                 .tag(Tab.Profile)
                             RewardsView()
                                 .tag(Tab.Rewards)
-                            VStack{
-                                Text("LogOut")
-                                Button(action: {
-                                    authViewModel.signOut()
-                                }, label: {
-                                    Text("SignOut")
-                                })
-                            }
-                            .tag(Tab.logout)
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                         
@@ -51,7 +44,7 @@ struct MainView: View {
                     .navigationTitle("Welcome")
                     .navigationBarHidden(true)
                 }
-               
+                
                 if isNotificationViewVisible {
                     NotificationView()
                         .background(colorScheme == .light ? Color.white : Color.black)
@@ -64,7 +57,7 @@ struct MainView: View {
                         withAnimation {
                             showSideMenu = false
                             isNotificationViewVisible.toggle()
-
+                            
                         }
                     }, label: {
                         Image(systemName: "bell.fill")
@@ -79,6 +72,7 @@ struct MainView: View {
             }
             .onTapGesture {
                 if showSideMenu {
+                    previousTab = selectedTap
                     withAnimation {
                         showSideMenu = false
                     }
@@ -86,12 +80,28 @@ struct MainView: View {
             }
         }
         .onChange(of: selectedTap, perform: { value in
+            if value == .logout {
+                isLogoutAlertPresented.toggle()
+            }
             withAnimation {
                 showSideMenu = false
                 isNotificationViewVisible = false
-
+                
             }
+            
         })
+        .alert(isPresented: $isLogoutAlertPresented) {
+            Alert(
+                title: Text("Are you sure you want to log out?"),
+                message: Text("You can always log in again later."),
+                primaryButton: .destructive(Text("Yes")) {
+                    authViewModel.signOut()
+                },
+                secondaryButton: .cancel(Text("No")) {
+                    selectedTap = previousTab
+                }
+            )
+        }
     }
 }
 
