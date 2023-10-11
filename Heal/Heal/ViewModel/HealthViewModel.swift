@@ -18,6 +18,7 @@ enum ImagesController: String {
     case heartRate = "heart"
     case distanceWalkingRunning = "walkingDistance"
     case profile = "profile"
+    case rewards = "Rewards"
     
     func imageName(isGirl: Bool = false) -> String {
         if isGirl {
