@@ -1,11 +1,11 @@
 # Heal
-![App Logo](Media/HealLogo.PNG)
+![App Logo](Media/HealLogo.png)
 # SwiftUI HealthKit App
 
 ## Description
 This SwiftUI app is designed to demonstrate the use of SwiftUI and HealthKit. It allows users to sign in and grant HealthKit permissions, track daily, weekly, and monthly health goals, and view their health data, including height, weight, and BMI. The app also features various animations to enhance the user experience.
 
-[![Heal App]([https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg](https://drive.google.com/file/d/15THE_FyLDOUkauPdxViRBjuOGkbDeR9L/view?usp=drive_link))]([https://www.youtube.com/watch?v=YOUR_VIDEO_ID](https://drive.google.com/file/d/1sO_ELsO_7OqgXVO1ip_mU6BniJ3giIEY/view?usp=drive_link))
+[![Heal App]([https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg](https://drive.google.com/file/d/15THE_FyLDOUkauPdxViRBjuOGkbDeR9L/view?usp=drive_link))]((https://drive.google.com/file/d/1sO_ELsO_7OqgXVO1ip_mU6BniJ3giIEY/view?usp=drive_link))
 
 ## Table of Contents
 
@@ -40,6 +40,7 @@ This SwiftUI app is designed to demonstrate the use of SwiftUI and HealthKit. It
 <img src="Media/5.PNG" alt="Screenshot 2" width="200">
 <img src="Media/6.PNG" alt="Screenshot 2" width="200">
 </div>
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
