@@ -32,6 +32,7 @@ class AuthViewModel: ObservableObject {
         self.userSession = Auth.auth().currentUser
         Task{
             await fetchUser()
+            self.isLoading = false
         }
     }
     func signIn(withEmail email: String, password: String) async throws {
@@ -80,6 +81,6 @@ class AuthViewModel: ObservableObject {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         guard let snapShot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
         self.currentUser = try? snapShot.data(as: User.self)
-        self.isLoading = false
+//        self.isLoading = false
     }
 }
